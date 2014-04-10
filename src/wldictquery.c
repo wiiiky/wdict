@@ -219,24 +219,36 @@ static void taskThread(GTask * task, gpointer source,
 									"failed to parse URL %s", target);
 		g_free(target);
 		g_task_return_error(task, error);
+		return;
 	}
 	g_free(target);
 
-	SoupSession *session = soup_session_new();
+	static SoupSession *session = NULL;
+	if (session == NULL) {
+		session = soup_session_new();
+	}
+
+	if (g_task_return_error_if_cancelled(task)) {
+		g_object_unref(msg);
+		return;
+	}
+
 	guint status = soup_session_send_message(session, msg);
 	if (!SOUP_STATUS_IS_SUCCESSFUL(status)) {
-		g_object_unref(session);
 		g_object_unref(msg);
 		g_task_return_new_error(task, G_IO_ERROR, status,
 								"%s", soup_status_get_phrase(status));
+		return;
 	}
 
-	g_task_return_error_if_cancelled(task);
+	if (g_task_return_error_if_cancelled(task)) {
+		g_object_unref(msg);
+		return;
+	}
 
 	SoupMessageBody *body = NULL;
 	g_object_get(msg, "response-body", &body, NULL);
 	gchar *responseBody = g_strdup(body->data);
-	g_object_unref(session);
 	g_object_unref(msg);
 	g_task_return_pointer(task, responseBody, g_free);
 }

@@ -46,6 +46,8 @@ struct _WlDictWindow {
 	GtkWidget *bdButton;
 	AppIndicator *ai;
 	GtkWidget *checkItem;
+	GtkWidget *fromTo;
+	GtkWidget *result;
 
 	WlDictQuery *query;
 };

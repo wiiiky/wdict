@@ -50,8 +50,12 @@ static void wl_dict_window_init(WlDictWindow * obj)
 	g_signal_connect(G_OBJECT(obj), "delete-event",
 					 G_CALLBACK(onWindowDelete), obj);
 
-	GtkWidget *box = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 5);
-	gtk_container_add(GTK_CONTAINER(obj), box);
+	GtkWidget *vBox = gtk_box_new(GTK_ORIENTATION_VERTICAL, 5);
+	gtk_container_set_border_width(GTK_CONTAINER(vBox), 3);
+	gtk_container_add(GTK_CONTAINER(obj), vBox);
+
+	GtkWidget *box = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 6);
+	gtk_box_pack_start(GTK_BOX(vBox), box, FALSE, FALSE, 0);
 	/* entry */
 	GtkWidget *entry = gtk_entry_new();
 	gtk_entry_set_activates_default(GTK_ENTRY(entry), TRUE);
@@ -64,10 +68,17 @@ static void wl_dict_window_init(WlDictWindow * obj)
 					 G_CALLBACK(onSearchButtonClicked), obj);
 	gtk_box_pack_start(GTK_BOX(box), button, FALSE, TRUE, 0);
 
+	/* Results */
+	GtkWidget *fromTo = gtk_label_new("");
+	gtk_widget_set_halign(fromTo, GTK_ALIGN_START);
+	gtk_box_pack_start(GTK_BOX(vBox), fromTo, TRUE, TRUE, 0);
+	GtkWidget *result = gtk_label_new("");
+	gtk_widget_set_halign(result, GTK_ALIGN_START);
+	gtk_box_pack_start(GTK_BOX(vBox), result, TRUE, TRUE, 0);
+
 	/* indicator */
-	AppIndicator *ci =
-		app_indicator_new("wdict", "search",
-						  APP_INDICATOR_CATEGORY_APPLICATION_STATUS);
+	AppIndicator *ci = app_indicator_new("wdict", "search",
+										 APP_INDICATOR_CATEGORY_APPLICATION_STATUS);
 	app_indicator_set_status(ci, APP_INDICATOR_STATUS_ACTIVE);
 
 	/* indicator menu */
@@ -92,6 +103,8 @@ static void wl_dict_window_init(WlDictWindow * obj)
 	obj->bdButton = button;
 	obj->ai = ci;
 	obj->checkItem = checkItem;
+	obj->fromTo = fromTo;
+	obj->result = result;
 	obj->query = wl_dict_query_new(WL_DICT_AUTO, WL_DICT_AUTO);
 }
 
@@ -172,8 +185,12 @@ static void onQueryCallback(WlDictLang from, WlDictLang to,
 			g_warning("%d:%s", err->code, err->message);
 		return;
 	}
-	g_printf("%s=>%s\n\t%s:%s\n", wl_dict_lang_get_phrase(from),
-			 wl_dict_lang_get_phrase(to), src, res);
+	WlDictWindow *window = data;
+	gchar *fromTo =
+		g_strdup_printf("%s => %s", wl_dict_lang_get_phrase(from),
+						wl_dict_lang_get_phrase(to));
+	gtk_label_set_text(window->fromTo, fromTo);
+	gtk_label_set_text(window->result, res);
 }
 
 static void onSearchButtonClicked(GtkButton * button, gpointer data)
@@ -184,7 +201,7 @@ static void onSearchButtonClicked(GtkButton * button, gpointer data)
 	gtk_editable_select_region(GTK_EDITABLE(window->textEntry), 0, -1);
 
 	const gchar *src = gtk_entry_get_text(GTK_ENTRY(window->textEntry));
-	wl_dict_query_query(window->query, src, onQueryCallback, NULL);
+	wl_dict_query_query(window->query, src, onQueryCallback, window);
 }
 
 static inline GdkPixbuf *getBaiduLogo(void)
