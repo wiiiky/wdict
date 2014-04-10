@@ -26,7 +26,6 @@
 #include <json-glib/json-glib.h>
 
 G_BEGIN_DECLS
-
 /* Macro for casting a pointer to a WlDictQuery or WlDictQueryClass pointer.
  * Macros for testing whether `object' or `klass' are of type WL_TYPE_DICT_QUERY.
  */
@@ -36,39 +35,37 @@ G_BEGIN_DECLS
 #define WL_IS_DICT_QUERY(obj)	(G_TYPE_CHECK_INSTANCE_TYPE ((obj), WL_TYPE_DICT_QUERY))
 #define WL_IS_DICT_QUERY_CLASS(klass)	(G_TYPE_CHECK_CLASS_TYPE ((klass), WL_TYPE_DICT_QUERY))
 #define WL_DICT_QUERY_GET_CLASS(obj)	(G_TYPE_INSTANCE_GET_CLASS ((obj), WL_TYPE_DICT_QUERY, WlDictQueryClass))
-
-
-typedef struct _WlDictQuery	WlDictQuery;
-typedef struct _WlDictQueryClass	WlDictQueryClass;
+typedef struct _WlDictQuery WlDictQuery;
+typedef struct _WlDictQueryClass WlDictQueryClass;
 typedef enum _WlDictLang WlDictLang;
 
 /* 支持的语言 */
 enum _WlDictLang {
-    WL_DICT_ZH=1,	/* 中文 */
-    WL_DICT_EN,		/* 英语 */
-    WL_DICT_JP,		/* 日语 */
-    WL_DICT_KOR,	/* 韩语 */
-    WL_DICT_SPA,	/* 西班牙语 */
-    WL_DICT_FRA,	/* 法语 */
-    WL_DICT_TH,		/* 泰语 */
-    WL_DICT_ARA,	/* 阿拉伯语 */
-    WL_DICT_RU,		/* 俄语 */
-    WL_DICT_PT,		/* 葡萄牙语 */
-    WL_DICT_YUE,	/* 粤语 */
-    WL_DICT_WYW,	/* 文言文 */
-    WL_DICT_AUTO,	/* 自动检测 */
+	WL_DICT_ZH = 1,				/* 中文 */
+	WL_DICT_EN,					/* 英语 */
+	WL_DICT_JP,					/* 日语 */
+	WL_DICT_KOR,				/* 韩语 */
+	WL_DICT_SPA,				/* 西班牙语 */
+	WL_DICT_FRA,				/* 法语 */
+	WL_DICT_TH,					/* 泰语 */
+	WL_DICT_ARA,				/* 阿拉伯语 */
+	WL_DICT_RU,					/* 俄语 */
+	WL_DICT_PT,					/* 葡萄牙语 */
+	WL_DICT_YUE,				/* 粤语 */
+	WL_DICT_WYW,				/* 文言文 */
+	WL_DICT_AUTO,				/* 自动检测 */
 };
 
 struct _WlDictQuery {
-    GObject parent;
-    /* Private */
-    GCancellable *cancel;
-    WlDictLang from,to;
+	GObject parent;
+	/* Private */
+	GCancellable *cancel;
+	WlDictLang from, to;
 };
 
 struct _WlDictQueryClass {
-    GObjectClass parentClass;
-    /* Private */
+	GObjectClass parentClass;
+	/* Private */
 };
 
 #define WL_TYPE_DICT_LANG	(wl_dict_lang_get_type())
@@ -77,27 +74,27 @@ GType wl_dict_lang_get_type(void) G_GNUC_CONST;
 
 GType wl_dict_query_get_type(void) G_GNUC_CONST;
 
-typedef void (*WlDictQueryCallback)(WlDictLang from,WlDictLang to,
-                                    const gchar *src,const gchar *res,gpointer data,GError *error);
+typedef void (*WlDictQueryCallback) (WlDictLang from, WlDictLang to,
+									 const gchar * src, const gchar * res,
+									 gpointer data, GError * error);
 
 /* Public */
 
-WlDictQuery *wl_dict_query_new(WlDictLang from,WlDictLang to);
+WlDictQuery *wl_dict_query_new(WlDictLang from, WlDictLang to);
 
 const gchar *wl_dict_lang_get_phrase(WlDictLang lang);
-WlDictLang wl_dict_lang_get_enum(const gchar *lang);
+WlDictLang wl_dict_lang_get_enum(const gchar * lang);
 
-void wl_dict_query_query(WlDictQuery *query,const gchar *src,
-                         WlDictQueryCallback cb,gpointer userData);
+void wl_dict_query_query(WlDictQuery * query, const gchar * src,
+						 WlDictQueryCallback cb, gpointer userData);
 
 /* setters */
-void wl_dict_query_set_from(WlDictQuery *query,WlDictLang from);
-void wl_dict_query_set_to(WlDictQuery *query,WlDictLang to);
+void wl_dict_query_set_from(WlDictQuery * query, WlDictLang from);
+void wl_dict_query_set_to(WlDictQuery * query, WlDictLang to);
 
 /* getters */
-WlDictLang wl_dict_query_get_from(WlDictQuery *query);
-WlDictLang wl_dict_query_get_to(WlDictQuery *query);
+WlDictLang wl_dict_query_get_from(WlDictQuery * query);
+WlDictLang wl_dict_query_get_to(WlDictQuery * query);
 
 G_END_DECLS
-
 #endif

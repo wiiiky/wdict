@@ -3,14 +3,14 @@ Maximized=1
 Geometry=1301x744+65+24
 
 [File Loader]
-Files=../../src/main.c#28%%%../../src/wldictquery.c#276%%%../../src/wldictquery.h#88%%%../../src/wldictwindow.c#59%%%../../src/wldictwindow.h#53
+Files=../../src/main.c#28%%%../../src/wldictquery.c#276%%%../../src/wldictquery.h#88%%%../../src/wldictwindow.c#168%%%../../src/wldictwindow.h#45
 
 [Document Manager]
 bookmarks=<?xml version="1.0" encoding="UTF-8"?>\n<bookmarks/>\n
 
 [Project Manager]
-Shortcut=wdict//src//wdict
-Expand=wdict%%%wdict//data%%%wdict//data//nobase_dist_data%%%wdict//src%%%wdict//src//wdict%%%wdict//WDICT
+Shortcut=wdict//data
+Expand=wdict%%%wdict//data%%%wdict//data//nobase_dist_wdata%%%wdict//src%%%wdict//src//wdict%%%wdict//dist_doc%%%wdict//WDICT
 
 [Execution]
 Program uri=../../Debug/src/wdict

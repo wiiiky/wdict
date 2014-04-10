@@ -25,7 +25,6 @@
 #include <libsoup/soup.h>
 
 G_BEGIN_DECLS
-
 /* Macro for casting a pointer to a WlDictSession or WlDictSessionClass pointer.
  * Macros for testing whether `object' or `klass' are of type WL_TYPE_DICT_SESSION.
  */
@@ -35,24 +34,24 @@ G_BEGIN_DECLS
 #define WL_IS_DICT_SESSION(obj)	(G_TYPE_CHECK_INSTANCE_TYPE ((obj), WL_TYPE_DICT_SESSION))
 #define WL_IS_DICT_SESSION_CLASS(klass)	(G_TYPE_CHECK_CLASS_TYPE ((klass), WL_TYPE_DICT_SESSION))
 #define WL_DICT_SESSION_GET_CLASS(obj)	(G_TYPE_INSTANCE_GET_CLASS ((obj), WL_TYPE_DICT_SESSION, WlDictSessionClass))
+typedef struct _WlDictSession WlDictSession;
+typedef struct _WlDictSessionClass WlDictSessionClass;
 
-
-typedef struct _WlDictSession	WlDictSession;
-typedef struct _WlDictSessionClass	WlDictSessionClass;
-
-typedef void (*WlDictSessionCallback)(const gchar *from,const gchar *to,
-                                      const gchar *src,const gchar *res,
-                                      const gchar *errorString,gpointer data);
+typedef void (*WlDictSessionCallback) (const gchar * from,
+									   const gchar * to, const gchar * src,
+									   const gchar * res,
+									   const gchar * errorString,
+									   gpointer data);
 
 struct _WlDictSession {
-    SoupSession parent;
-    /*Private*/
-    GCancellable *cancellable;
+	SoupSession parent;
+	/*Private */
+	GCancellable *cancellable;
 };
 
 struct _WlDictSessionClass {
-    SoupSessionClass parentKlass;
-    /*Private*/
+	SoupSessionClass parentKlass;
+	/*Private */
 };
 
 GType wl_dict_session_get_type(void) G_GNUC_CONST;
@@ -60,9 +59,9 @@ GType wl_dict_session_get_type(void) G_GNUC_CONST;
 /* Public */
 WlDictSession *wl_dict_session_new(void);
 
-void wl_dict_session_query(WlDictSession *session,const gchar *queryString,
-                           WlDictSessionCallback callback,gpointer data);
+void wl_dict_session_query(WlDictSession * session,
+						   const gchar * queryString,
+						   WlDictSessionCallback callback, gpointer data);
 
 G_END_DECLS
-
 #endif

@@ -26,7 +26,6 @@
 #include "wldictquery.h"
 
 G_BEGIN_DECLS
-
 /* Macro for casting a pointer to a WlDictWindow or WlDictWindowClass pointer.
  * Macros for testing whether `object' or `klass' are of type WL_TYPE_DICT_WINDOW.
  */
@@ -36,26 +35,24 @@ G_BEGIN_DECLS
 #define WL_IS_DICT_WINDOW(obj)	(G_TYPE_CHECK_INSTANCE_TYPE ((obj), WL_TYPE_DICT_WINDOW))
 #define WL_IS_DICT_WINDOW_CLASS(klass)	(G_TYPE_CHECK_CLASS_TYPE ((klass), WL_TYPE_DICT_WINDOW))
 #define WL_DICT_WINDOW_GET_CLASS(obj)	(G_TYPE_INSTANCE_GET_CLASS ((obj), WL_TYPE_DICT_WINDOW, WlDictWindowClass))
-
-
-typedef struct _WlDictWindow	WlDictWindow;
-typedef struct _WlDictWindowClass	WlDictWindowClass;
+typedef struct _WlDictWindow WlDictWindow;
+typedef struct _WlDictWindowClass WlDictWindowClass;
 
 
 struct _WlDictWindow {
-    GtkWindow parent;
-    /*Private*/
-    GtkWidget *textEntry;
-    GtkWidget *bdButton;
-    AppIndicator *ai;
-    GtkWidget *checkItem;
+	GtkWindow parent;
+	/*Private */
+	GtkWidget *textEntry;
+	GtkWidget *bdButton;
+	AppIndicator *ai;
+	GtkWidget *checkItem;
 
-    WlDictQuery *query;
+	WlDictQuery *query;
 };
 
 struct _WlDictWindowClass {
-    GtkWindowClass parentKlass;
-    /*Private*/
+	GtkWindowClass parentKlass;
+	/*Private */
 };
 
 GType wl_dict_window_get_type(void) G_GNUC_CONST;
@@ -65,5 +62,4 @@ WlDictWindow *wl_dict_window_new(void);
 
 
 G_END_DECLS
-
 #endif

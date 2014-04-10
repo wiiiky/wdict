@@ -28,131 +28,139 @@
 
 G_DEFINE_TYPE(WlDictSession, wl_dict_session, SOUP_TYPE_SESSION);
 
-static void wl_dict_session_init(WlDictSession *obj);
-static void wl_dict_session_finalize(GObject *obj);
-static void wl_dict_session_class_init(WlDictSessionClass *klass);
-static void wl_dict_session_getter(GObject *object,guint property_id,
-                                   GValue *value,GParamSpec *ps);
-static void wl_dict_session_setter(GObject *object,guint property_id,
-                                   const GValue *value,GParamSpec *ps);
+static void wl_dict_session_init(WlDictSession * obj);
+static void wl_dict_session_finalize(GObject * obj);
+static void wl_dict_session_class_init(WlDictSessionClass * klass);
+static void wl_dict_session_getter(GObject * object, guint property_id,
+								   GValue * value, GParamSpec * ps);
+static void wl_dict_session_setter(GObject * object, guint property_id,
+								   const GValue * value, GParamSpec * ps);
 
-static void asyncReadyCallback(GObject *object,GAsyncResult *res,gpointer data);
+static void asyncReadyCallback(GObject * object, GAsyncResult * res,
+							   gpointer data);
 
-static void wl_dict_session_init(WlDictSession *obj)
+static void wl_dict_session_init(WlDictSession * obj)
 {
-    obj->cancellable=g_cancellable_new ();
+	obj->cancellable = g_cancellable_new();
 }
 
-static void wl_dict_session_finalize(GObject *obj)
+static void wl_dict_session_finalize(GObject * obj)
 {
-    WlDictSession *session=WL_DICT_SESSION(obj);
-    g_object_unref(session->cancellable);
+	WlDictSession *session = WL_DICT_SESSION(obj);
+	g_object_unref(session->cancellable);
 }
 
-static void wl_dict_session_class_init(WlDictSessionClass *klass)
+static void wl_dict_session_class_init(WlDictSessionClass * klass)
 {
-    GObjectClass *obj_class=G_OBJECT_CLASS(klass);
-    obj_class->get_property=wl_dict_session_getter;
-    obj_class->set_property=wl_dict_session_setter;
-    obj_class->finalize=wl_dict_session_finalize;
+	GObjectClass *obj_class = G_OBJECT_CLASS(klass);
+	obj_class->get_property = wl_dict_session_getter;
+	obj_class->set_property = wl_dict_session_setter;
+	obj_class->finalize = wl_dict_session_finalize;
 
-    GParamSpec *ps;
-    /* properties */
+	GParamSpec *ps;
+	/* properties */
 }
 
-static void wl_dict_session_getter(GObject *object,guint property_id,
-                                   GValue *value,GParamSpec *ps)
+static void wl_dict_session_getter(GObject * object, guint property_id,
+								   GValue * value, GParamSpec * ps)
 {
-    WlDictSession *obj=WL_DICT_SESSION(object);
-    switch(property_id) {
-    default:
-        G_OBJECT_WARN_INVALID_PROPERTY_ID(object,property_id,ps);
-    }
+	WlDictSession *obj = WL_DICT_SESSION(object);
+	switch (property_id) {
+	default:
+		G_OBJECT_WARN_INVALID_PROPERTY_ID(object, property_id, ps);
+	}
 }
 
-static void wl_dict_session_setter(GObject *object,guint property_id,
-                                   const GValue *value,GParamSpec *ps)
+static void wl_dict_session_setter(GObject * object, guint property_id,
+								   const GValue * value, GParamSpec * ps)
 {
-    WlDictSession *obj=WL_DICT_SESSION(object);
-    switch(property_id) {
-    default:
-        G_OBJECT_WARN_INVALID_PROPERTY_ID(object,property_id,ps);
-    }
+	WlDictSession *obj = WL_DICT_SESSION(object);
+	switch (property_id) {
+	default:
+		G_OBJECT_WARN_INVALID_PROPERTY_ID(object, property_id, ps);
+	}
 }
 
 typedef struct {
-    WlDictSessionCallback callback;
-    SoupSession *session;
-    gpointer data;
+	WlDictSessionCallback callback;
+	SoupSession *session;
+	gpointer data;
 } SendCallbackData;
 
-static inline SendCallbackData *newSendCallbackData(WlDictSessionCallback callback,SoupSession *session,
-        gpointer data)
+static inline SendCallbackData *newSendCallbackData(WlDictSessionCallback
+													callback,
+													SoupSession * session,
+													gpointer data)
 {
-    SendCallbackData *scd=g_malloc(sizeof(SendCallbackData));
-    scd->callback=callback;
-    scd->session=session;
-    scd->data=data;
-    return scd;
+	SendCallbackData *scd = g_malloc(sizeof(SendCallbackData));
+	scd->callback = callback;
+	scd->session = session;
+	scd->data = data;
+	return scd;
 }
 
-static inline void freeSendCallbackData(SendCallbackData *data)
+static inline void freeSendCallbackData(SendCallbackData * data)
 {
-    g_free (data);
+	g_free(data);
 }
 
 
 
-static void asyncReadyCallback(GObject *object,GAsyncResult *res,gpointer data)
+static void asyncReadyCallback(GObject * object, GAsyncResult * res,
+							   gpointer data)
 {
-    SendCallbackData *scData=data;
-    WlDictSessionCallback callback=scData->callback;
-    //WlDictSession *session=scData->session;
-    gpointer userData=scData->data;
-    freeSendCallbackData (scData);
+	SendCallbackData *scData = data;
+	WlDictSessionCallback callback = scData->callback;
+	//WlDictSession *session=scData->session;
+	gpointer userData = scData->data;
+	freeSendCallbackData(scData);
 
-    gchar *bodyData=g_task_propagate_pointer (G_TASK(res),NULL);
-    if(bodyData==NULL) { /* ERROR */
-        if(callback)
-            callback(NULL,NULL,NULL,NULL,"Network error",userData);
-        return;
-    }
-    JsonParser *parser=json_parser_new();
-    if(json_parser_load_from_data(parser,bodyData,-1,NULL)
-            ==FALSE) {
-        if(callback)
-            callback(NULL,NULL,NULL,NULL,"Invalid HTTP response",userData);
-        return;
-    }
+	gchar *bodyData = g_task_propagate_pointer(G_TASK(res), NULL);
+	if (bodyData == NULL) {		/* ERROR */
+		if (callback)
+			callback(NULL, NULL, NULL, NULL, "Network error", userData);
+		return;
+	}
+	JsonParser *parser = json_parser_new();
+	if (json_parser_load_from_data(parser, bodyData, -1, NULL)
+		== FALSE) {
+		if (callback)
+			callback(NULL, NULL, NULL, NULL, "Invalid HTTP response",
+					 userData);
+		return;
+	}
 
-    JsonNode *rootNode=json_parser_get_root(parser);
-    JsonObject *rootObj=json_node_get_object(rootNode);
-    const gchar *from=json_object_get_string_member(rootObj,"from");
-    const gchar *to=json_object_get_string_member(rootObj,"to");
-    JsonArray *results=json_object_get_array_member(rootObj,"trans_result");
-    JsonObject *resEle=json_array_get_object_element(results,0);
-    const gchar *src=json_object_get_string_member(resEle,"src");
-    const gchar *dst=json_object_get_string_member(resEle,"dst");
-    if(callback)
-        callback(from,to,src,dst,NULL,userData);
+	JsonNode *rootNode = json_parser_get_root(parser);
+	JsonObject *rootObj = json_node_get_object(rootNode);
+	const gchar *from = json_object_get_string_member(rootObj, "from");
+	const gchar *to = json_object_get_string_member(rootObj, "to");
+	JsonArray *results =
+		json_object_get_array_member(rootObj, "trans_result");
+	JsonObject *resEle = json_array_get_object_element(results, 0);
+	const gchar *src = json_object_get_string_member(resEle, "src");
+	const gchar *dst = json_object_get_string_member(resEle, "dst");
+	if (callback)
+		callback(from, to, src, dst, NULL, userData);
 }
 
-static void taskThread(GTask *task,gpointer object,gpointer taskData,GCancellable *cancellable)
+static void taskThread(GTask * task, gpointer object, gpointer taskData,
+					   GCancellable * cancellable)
 {
-    WlDictSession *session=WL_DICT_SESSION(object);
-    SoupMessage *msg=SOUP_MESSAGE(taskData);
+	WlDictSession *session = WL_DICT_SESSION(object);
+	SoupMessage *msg = SOUP_MESSAGE(taskData);
 
-    guint statusCode=soup_session_send_message (SOUP_SESSION(session),msg);
-    if(!SOUP_STATUS_IS_SUCCESSFUL(statusCode))
-        g_task_return_pointer (task,NULL,NULL);
-    SoupMessageBody *body=NULL;
-    g_object_get(msg,"response-body",&body,NULL);
-    g_task_return_pointer (task,(gpointer)body->data,NULL);
+	guint statusCode =
+		soup_session_send_message(SOUP_SESSION(session), msg);
+	if (!SOUP_STATUS_IS_SUCCESSFUL(statusCode))
+		g_task_return_pointer(task, NULL, NULL);
+	SoupMessageBody *body = NULL;
+	g_object_get(msg, "response-body", &body, NULL);
+	g_task_return_pointer(task, (gpointer) body->data, NULL);
 }
 
 static void taskDataDestroy(gpointer data)
 {
-    g_object_unref (data);
+	g_object_unref(data);
 }
 
 /**************************************************
@@ -160,30 +168,34 @@ static void taskDataDestroy(gpointer data)
  **************************************************/
 WlDictSession *wl_dict_session_new(void)
 {
-    WlDictSession *session=(WlDictSession *)g_object_new (WL_TYPE_DICT_SESSION,NULL);
+	WlDictSession *session =
+		(WlDictSession *) g_object_new(WL_TYPE_DICT_SESSION, NULL);
 
-    return session;
+	return session;
 }
 
-void wl_dict_session_query(WlDictSession *session,const gchar *queryString,
-                           WlDictSessionCallback callback,gpointer data)
+void wl_dict_session_query(WlDictSession * session,
+						   const gchar * queryString,
+						   WlDictSessionCallback callback, gpointer data)
 {
-    gchar *q=g_uri_escape_string (queryString,NULL,TRUE);
-    gchar *target=g_strdup_printf(TARGET_URL,q);
-    g_free (q);
+	gchar *q = g_uri_escape_string(queryString, NULL, TRUE);
+	gchar *target = g_strdup_printf(TARGET_URL, q);
+	g_free(q);
 
-    SoupMessage *msg=soup_message_new("GET",target);
-    g_free (target);
-    if(msg==NULL) {
-        if(callback)
-            callback(NULL,NULL,NULL,NULL,"Fail to create SoupMessage",data);
-        return;
-    }
-    //GCancellable *cancellable=g_cancellable_new ();
+	SoupMessage *msg = soup_message_new("GET", target);
+	g_free(target);
+	if (msg == NULL) {
+		if (callback)
+			callback(NULL, NULL, NULL, NULL, "Fail to create SoupMessage",
+					 data);
+		return;
+	}
+	//GCancellable *cancellable=g_cancellable_new ();
 
-    SendCallbackData *scData=newSendCallbackData (callback,SOUP_SESSION(session),data);
-    GTask *task=g_task_new (session,NULL,asyncReadyCallback,scData);
-    g_task_set_task_data (task,msg,taskDataDestroy );
-    g_task_run_in_thread (task,taskThread);
-    g_object_unref (task);
+	SendCallbackData *scData =
+		newSendCallbackData(callback, SOUP_SESSION(session), data);
+	GTask *task = g_task_new(session, NULL, asyncReadyCallback, scData);
+	g_task_set_task_data(task, msg, taskDataDestroy);
+	g_task_run_in_thread(task, taskThread);
+	g_object_unref(task);
 }

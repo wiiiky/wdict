@@ -20,15 +20,13 @@
 #include <config.h>
 #include "wldictwindow.h"
 
-int
-main (int argc, char *argv[])
+int main(int argc, char *argv[])
 {
-    gtk_init (&argc, &argv);
+	gtk_init(&argc, &argv);
 
-    WlDictWindow *window=wl_dict_window_new ();
+	WlDictWindow *window = wl_dict_window_new();
 
-    gtk_main ();
+	gtk_main();
 
-    return 0;
+	return 0;
 }
-
