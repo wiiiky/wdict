@@ -1,6 +1,6 @@
 使用百度翻译API实现的一个简单词典程序
 
-依赖libsoup-2.4 gtk+-3.0
+依赖libsoup2.4-dev libappindicator3-dev libjson-glib-dev libgtk-3-dev
 
 我并不打算实现多么复杂的功能，只是简单的查询翻译。
 

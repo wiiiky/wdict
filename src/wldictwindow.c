@@ -19,7 +19,6 @@
  */
 
 #include "wldictwindow.h"
-#include "wldictsession.h"
 
 #define BAIDU_FANYI_LOGO PACKAGE_DATA_DIR "/baidu-fanyi.png"
 
@@ -122,14 +121,14 @@ static void wl_dict_window_class_init(WlDictWindowClass * klass)
 	obj_class->set_property = wl_dict_window_setter;
 	obj_class->finalize = wl_dict_window_finalize;
 
-	GParamSpec *ps;
+	//GParamSpec *ps;
 	/* properties */
 }
 
 static void wl_dict_window_getter(GObject * object, guint property_id,
 								  GValue * value, GParamSpec * ps)
 {
-	WlDictWindow *obj = WL_DICT_WINDOW(object);
+	//WlDictWindow *obj = WL_DICT_WINDOW(object);
 	switch (property_id) {
 	default:
 		G_OBJECT_WARN_INVALID_PROPERTY_ID(object, property_id, ps);
@@ -139,7 +138,7 @@ static void wl_dict_window_getter(GObject * object, guint property_id,
 static void wl_dict_window_setter(GObject * object, guint property_id,
 								  const GValue * value, GParamSpec * ps)
 {
-	WlDictWindow *obj = WL_DICT_WINDOW(object);
+	//WlDictWindow *obj = WL_DICT_WINDOW(object);
 	switch (property_id) {
 	default:
 		G_OBJECT_WARN_INVALID_PROPERTY_ID(object, property_id, ps);
