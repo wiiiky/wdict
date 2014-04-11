@@ -19,6 +19,7 @@
  */
 
 #include "wldictquery.h"
+#include <stdlib.h>
 
 #define CLIENT_ID	"WOkykfPXheIbcGE2UvqRSU1f"
 
@@ -189,6 +190,25 @@ static void onTaskReadyCallback(GObject * source, GAsyncResult * res,
 	JsonObject *rootObj = json_node_get_object(rootNode);
 	const gchar *from = json_object_get_string_member(rootObj, "from");
 	const gchar *to = json_object_get_string_member(rootObj, "to");
+
+	if (json_object_has_member(rootObj, "error_code")) {
+		/* 查询出错 */
+		const gchar *error_msg =
+			json_object_get_string_member(rootObj, "error_msg");
+		const gchar *error_code =
+			json_object_get_string_member(rootObj, "error_code");
+		if (td->cb) {
+			GError *error =
+				g_error_new(G_IO_ERROR, atoi(error_code), "%s", error_msg);
+			td->cb(wl_dict_lang_get_enum(from), wl_dict_lang_get_enum(to),
+				   json_object_get_string_member(rootObj, "query"), NULL,
+				   td->cbData, error);
+			g_error_free(error);
+		}
+		g_object_unref(parser);
+		return;
+	}
+
 	JsonArray *results =
 		json_object_get_array_member(rootObj, "trans_result");
 	gint i, len = json_array_get_length(results);

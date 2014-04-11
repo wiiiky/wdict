@@ -42,6 +42,7 @@ static void onSearchButtonClicked(GtkButton * button, gpointer data);
 
 static inline void showDictWindow(WlDictWindow * window);
 static inline void hideDictWindow(WlDictWindow * window);
+static inline gboolean isQueryStringValid(const gchar * str);
 
 static void wl_dict_window_init(WlDictWindow * obj)
 {
@@ -189,8 +190,8 @@ static void onQueryCallback(WlDictLang from, WlDictLang to,
 	gchar *fromTo =
 		g_strdup_printf("%s => %s", wl_dict_lang_get_phrase(from),
 						wl_dict_lang_get_phrase(to));
-	gtk_label_set_text(window->fromTo, fromTo);
-	gtk_label_set_text(window->result, res);
+	gtk_label_set_text(GTK_LABEL(window->fromTo), fromTo);
+	gtk_label_set_text(GTK_LABEL(window->result), res);
 }
 
 static void onSearchButtonClicked(GtkButton * button, gpointer data)
@@ -201,6 +202,8 @@ static void onSearchButtonClicked(GtkButton * button, gpointer data)
 	gtk_editable_select_region(GTK_EDITABLE(window->textEntry), 0, -1);
 
 	const gchar *src = gtk_entry_get_text(GTK_ENTRY(window->textEntry));
+	if (!isQueryStringValid(src))
+		return;
 	wl_dict_query_query(window->query, src, onQueryCallback, window);
 }
 
@@ -211,7 +214,6 @@ static inline GdkPixbuf *getBaiduLogo(void)
 		pixbuf =
 			gdk_pixbuf_new_from_file(PACKAGE_SRC_DIR
 									 "/../data/baidu-fanyi.png", NULL);
-	g_printf("%s\n", PACKAGE_DATA_DIR);
 	return pixbuf;
 }
 
@@ -252,6 +254,18 @@ static inline void hideDictWindow(WlDictWindow * window)
 	gtk_widget_hide(GTK_WIDGET(window));
 	gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(window->checkItem),
 								   FALSE);
+}
+
+static inline gboolean isQueryStringValid(const gchar * str)
+{
+	if (str == NULL)
+		return FALSE;
+	while (*str) {
+		if (*str != ' ')
+			return TRUE;
+		str++;
+	}
+	return FALSE;
 }
 
 /**************************************************
