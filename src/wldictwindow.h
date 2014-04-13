@@ -24,6 +24,7 @@
 #include <gtk/gtk.h>
 #include <libappindicator/app-indicator.h>
 #include "wldictquery.h"
+#include "wlwaittext.h"
 
 G_BEGIN_DECLS
 /* Macro for casting a pointer to a WlDictWindow or WlDictWindowClass pointer.
@@ -50,6 +51,7 @@ struct _WlDictWindow {
 	GtkWidget *result;
 
 	WlDictQuery *query;
+	WlWaitText *waiting;
 };
 
 struct _WlDictWindowClass {

@@ -93,7 +93,7 @@ CONFIG_CLEAN_VPATH_FILES =
 am__installdirs = "$(DESTDIR)$(bindir)"
 PROGRAMS = $(bin_PROGRAMS)
 am_wdict_OBJECTS = main.$(OBJEXT) wldictwindow.$(OBJEXT) \
-	wldictquery.$(OBJEXT)
+	wldictquery.$(OBJEXT) wlwaittext.$(OBJEXT)
 wdict_OBJECTS = $(am_wdict_OBJECTS)
 am__DEPENDENCIES_1 =
 wdict_DEPENDENCIES = $(am__DEPENDENCIES_1)
@@ -329,7 +329,9 @@ wdict_SOURCES = \
 	wldictwindow.c \
 	wldictwindow.h \
 	wldictquery.c \
-	wldictquery.h
+	wldictquery.h \
+	wlwaittext.c \
+	wlwaittext.h
 
 wdict_LDFLAGS = \
 	-Wl,--export-dynamic
@@ -432,6 +434,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/main.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wldictquery.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wldictwindow.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wlwaittext.Po@am__quote@
 
 .c.o:
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<

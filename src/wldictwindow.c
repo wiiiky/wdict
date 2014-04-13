@@ -106,6 +106,7 @@ static void wl_dict_window_init(WlDictWindow * obj)
 	obj->fromTo = fromTo;
 	obj->result = result;
 	obj->query = wl_dict_query_new(WL_DICT_AUTO, WL_DICT_AUTO);
+	obj->waiting = wl_wait_text_new();
 }
 
 static void wl_dict_window_finalize(GObject * obj)

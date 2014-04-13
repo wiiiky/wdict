@@ -23,7 +23,9 @@ wdict_SOURCES =  \
 	wldictwindow.c \
 	wldictwindow.h \
 	wldictquery.c \
-	wldictquery.h
+	wldictquery.h \
+	wlwaittext.c \
+	wlwaittext.h
 
 wdict_LDFLAGS = \
 	-Wl,--export-dynamic

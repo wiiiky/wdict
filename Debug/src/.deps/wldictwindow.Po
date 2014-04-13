@@ -638,7 +638,11 @@ wldictwindow.o: /home/wiky/Documents/CODE/Bazaar/wdict/src/wldictwindow.c \
  /usr/include/json-glib-1.0/json-glib/json-version.h \
  /usr/include/json-glib-1.0/json-glib/json-enum-types.h \
  /usr/include/json-glib-1.0/json-glib/json-gobject.h \
- /usr/include/json-glib-1.0/json-glib/json-gvariant.h
+ /usr/include/json-glib-1.0/json-glib/json-gvariant.h \
+ /home/wiky/Documents/CODE/Bazaar/wdict/src/wlwaittext.h \
+ /usr/include/stdlib.h /usr/include/x86_64-linux-gnu/bits/waitflags.h \
+ /usr/include/x86_64-linux-gnu/bits/waitstatus.h /usr/include/alloca.h \
+ /usr/include/x86_64-linux-gnu/bits/stdlib-float.h /usr/include/string.h
 
 /usr/include/stdc-predef.h:
 
@@ -2029,3 +2033,17 @@ wldictwindow.o: /home/wiky/Documents/CODE/Bazaar/wdict/src/wldictwindow.c \
 /usr/include/json-glib-1.0/json-glib/json-gobject.h:
 
 /usr/include/json-glib-1.0/json-glib/json-gvariant.h:
+
+/home/wiky/Documents/CODE/Bazaar/wdict/src/wlwaittext.h:
+
+/usr/include/stdlib.h:
+
+/usr/include/x86_64-linux-gnu/bits/waitflags.h:
+
+/usr/include/x86_64-linux-gnu/bits/waitstatus.h:
+
+/usr/include/alloca.h:
+
+/usr/include/x86_64-linux-gnu/bits/stdlib-float.h:
+
+/usr/include/string.h:
