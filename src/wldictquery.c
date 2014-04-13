@@ -184,6 +184,7 @@ static void onTaskReadyCallback(GObject * source, GAsyncResult * res,
 	if (!json_parser_load_from_data(parser, responseBody, -1, &err)) {
 		if (td->cb)
 			td->cb(td->from, td->to, td->src, NULL, td->cbData, err);
+		g_message("%s", responseBody);
 		return;
 	}
 	JsonNode *rootNode = json_parser_get_root(parser);

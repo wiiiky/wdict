@@ -222,21 +222,25 @@ static void onAboutItemActivate(GtkMenuItem * item, gpointer data)
 		"Wiky L(wiiiky@yeah.net)",
 		NULL
 	};
-	GtkWidget *dialog = gtk_about_dialog_new();
-	gtk_about_dialog_set_logo(GTK_ABOUT_DIALOG(dialog), getBaiduLogo());
-	gtk_about_dialog_set_license_type(GTK_ABOUT_DIALOG(dialog),
-									  GTK_LICENSE_GPL_3_0);
-	gtk_about_dialog_set_copyright(GTK_ABOUT_DIALOG(dialog),
-								   "Copyright (c) 2014 - 2014 Wiky L");
-	gtk_about_dialog_set_authors(GTK_ABOUT_DIALOG(dialog), authors);
-	gtk_about_dialog_set_website(GTK_ABOUT_DIALOG(dialog),
-								 "https://launchpad.net/~wiiiky-v");
-	gtk_about_dialog_set_comments(GTK_ABOUT_DIALOG(dialog),
-								  "Based on Baidu Fanyi API");
-	//gtk_about_dialog_set_wrap_license(GTK_ABOUT_DIALOG(dialog),FALSE);
+	static GtkWidget *dialog = NULL;
+	if (dialog == NULL) {
+		dialog = gtk_about_dialog_new();
+		gtk_window_set_modal(GTK_WINDOW(dialog), TRUE);
+		gtk_about_dialog_set_logo(GTK_ABOUT_DIALOG(dialog),
+								  getBaiduLogo());
+		gtk_about_dialog_set_license_type(GTK_ABOUT_DIALOG(dialog),
+										  GTK_LICENSE_GPL_3_0);
+		gtk_about_dialog_set_copyright(GTK_ABOUT_DIALOG(dialog),
+									   "Copyright (c) 2014 - 2014 Wiky L");
+		gtk_about_dialog_set_authors(GTK_ABOUT_DIALOG(dialog), authors);
+		gtk_about_dialog_set_website(GTK_ABOUT_DIALOG(dialog),
+									 "https://launchpad.net/~wiiiky-v");
+		gtk_about_dialog_set_comments(GTK_ABOUT_DIALOG(dialog),
+									  "Based on Baidu Fanyi API");
+	}
 
 	gtk_dialog_run(GTK_DIALOG(dialog));
-	gtk_widget_destroy(dialog);
+	gtk_widget_hide(dialog);
 }
 
 static inline void showDictWindow(WlDictWindow * window)

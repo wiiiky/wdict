@@ -638,8 +638,7 @@ wldictwindow.o: /home/wiky/Documents/CODE/Bazaar/wdict/src/wldictwindow.c \
  /usr/include/json-glib-1.0/json-glib/json-version.h \
  /usr/include/json-glib-1.0/json-glib/json-enum-types.h \
  /usr/include/json-glib-1.0/json-glib/json-gobject.h \
- /usr/include/json-glib-1.0/json-glib/json-gvariant.h \
- /home/wiky/Documents/CODE/Bazaar/wdict/src/wldictsession.h
+ /usr/include/json-glib-1.0/json-glib/json-gvariant.h
 
 /usr/include/stdc-predef.h:
 
@@ -2030,5 +2029,3 @@ wldictwindow.o: /home/wiky/Documents/CODE/Bazaar/wdict/src/wldictwindow.c \
 /usr/include/json-glib-1.0/json-glib/json-gobject.h:
 
 /usr/include/json-glib-1.0/json-glib/json-gvariant.h:
-
-/home/wiky/Documents/CODE/Bazaar/wdict/src/wldictsession.h:
