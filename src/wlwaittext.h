@@ -37,7 +37,8 @@ WlWaitText *wl_wait_text_new(void);
 WlWaitText *wl_wait_text_construct(GType object_type);
 void wl_wait_text_set_callback(WlWaitText * self,
 							   WlWaitTextWaitTextCallback callback,
-							   gpointer * userData);
+							   gpointer userData);
+void wl_wait_text_set_timeout(WlWaitText * self, guint timeout);
 void wl_wait_text_startWaiting(WlWaitText * self);
 void wl_wait_text_stopWaiting(WlWaitText * self);
 

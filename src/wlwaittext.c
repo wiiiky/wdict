@@ -45,7 +45,7 @@ WlWaitText *wl_wait_text_new(void)
 
 void wl_wait_text_set_callback(WlWaitText * self,
 							   WlWaitTextWaitTextCallback callback,
-							   gpointer * userData)
+							   gpointer userData)
 {
 	g_return_if_fail(self != NULL);
 	WlWaitTextPrivate *priv = self->priv;
@@ -87,9 +87,17 @@ gboolean onWaitingForText(gpointer data)
 		lastText = text;
 		if (priv->callback)
 			priv->callback(lastText, priv->userData);
-	}
+	} else
+		g_free(text);
 
 	return TRUE;
+}
+
+void wl_wait_text_set_timeout(WlWaitText * self, guint timeout)
+{
+	g_return_if_fail(WL_IS_WAIT_TEXT(self));
+	WlWaitTextPrivate *priv = self->priv;
+	priv->timeout = timeout;
 }
 
 void wl_wait_text_startWaiting(WlWaitText * self)
@@ -145,8 +153,12 @@ GType wl_wait_text_get_type(void)
 	if (g_once_init_enter(&wl_wait_text_type_id__volatile)) {
 		static const GTypeInfo g_define_type_info =
 			{ sizeof(WlWaitTextClass), (GBaseInitFunc) NULL,
-(GBaseFinalizeFunc) NULL, (GClassInitFunc) wl_wait_text_class_init, (GClassFinalizeFunc) NULL,
-NULL, sizeof(WlWaitText), 0, (GInstanceInitFunc) wl_wait_text_instance_init, NULL };
+			(GBaseFinalizeFunc) NULL,
+				(GClassInitFunc) wl_wait_text_class_init,
+				(GClassFinalizeFunc) NULL,
+			NULL, sizeof(WlWaitText), 0,
+				(GInstanceInitFunc) wl_wait_text_instance_init, NULL
+		};
 		GType wl_wait_text_type_id;
 		wl_wait_text_type_id =
 			g_type_register_static(G_TYPE_OBJECT, "WlWaitText",

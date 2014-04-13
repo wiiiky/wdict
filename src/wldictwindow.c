@@ -194,6 +194,14 @@ static void onQueryCallback(WlDictLang from, WlDictLang to,
 	gtk_label_set_text(GTK_LABEL(window->result), res);
 }
 
+static inline void queryString(WlDictWindow * window, const gchar * text)
+{
+	if (!isQueryStringValid(text))
+		return;
+	gtk_entry_set_text(GTK_ENTRY(window->textEntry), text);
+	wl_dict_query_query(window->query, text, onQueryCallback, window);
+}
+
 static void onSearchButtonClicked(GtkButton * button, gpointer data)
 {
 	WlDictWindow *window = WL_DICT_WINDOW(data);
@@ -202,9 +210,7 @@ static void onSearchButtonClicked(GtkButton * button, gpointer data)
 	gtk_editable_select_region(GTK_EDITABLE(window->textEntry), 0, -1);
 
 	const gchar *src = gtk_entry_get_text(GTK_ENTRY(window->textEntry));
-	if (!isQueryStringValid(src))
-		return;
-	wl_dict_query_query(window->query, src, onQueryCallback, window);
+	queryString(window, src);
 }
 
 static inline GdkPixbuf *getBaiduLogo(void)
@@ -272,6 +278,12 @@ static inline gboolean isQueryStringValid(const gchar * str)
 	return FALSE;
 }
 
+static void onWaitingForText(const gchar * text, gpointer data)
+{
+	WlDictWindow *window = data;
+	queryString(window, text);
+}
+
 /**************************************************
  * PUBILC
  **************************************************/
@@ -279,6 +291,9 @@ WlDictWindow *wl_dict_window_new(void)
 {
 	WlDictWindow *window =
 		(WlDictWindow *) g_object_new(WL_TYPE_DICT_WINDOW, NULL);
+
+	wl_wait_text_set_callback(window->waiting, onWaitingForText, window);
+	wl_wait_text_startWaiting(window->waiting);
 
 
 	showDictWindow(window);
