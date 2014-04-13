@@ -154,10 +154,10 @@ GType wl_wait_text_get_type(void)
 		static const GTypeInfo g_define_type_info =
 			{ sizeof(WlWaitTextClass), (GBaseInitFunc) NULL,
 			(GBaseFinalizeFunc) NULL,
-				(GClassInitFunc) wl_wait_text_class_init,
-				(GClassFinalizeFunc) NULL,
+			(GClassInitFunc) wl_wait_text_class_init,
+			(GClassFinalizeFunc) NULL,
 			NULL, sizeof(WlWaitText), 0,
-				(GInstanceInitFunc) wl_wait_text_instance_init, NULL
+			(GInstanceInitFunc) wl_wait_text_instance_init, NULL
 		};
 		GType wl_wait_text_type_id;
 		wl_wait_text_type_id =

@@ -3,7 +3,7 @@ Maximized=1
 Geometry=1301x744+65+24
 
 [File Loader]
-Files=../../src/main.c#27%%%../../src/wldictquery.c#187%%%../../src/wldictquery.h#62%%%../../src/wldictwindow.c#186%%%../../src/wldictwindow.h#54%%%../../src/wlwaittext.h#41%%%../../src/wlwaittext.c#100
+Files=../../src/main.c#27%%%../../src/wldictquery.c#187%%%../../src/wldictquery.h#62%%%../../src/wldictwindow.c#255%%%../../src/wldictwindow.h#54%%%../../src/wlwaittext.h#41%%%../../src/wlwaittext.c#100
 
 [Document Manager]
 bookmarks=<?xml version="1.0" encoding="UTF-8"?>\n<bookmarks/>\n

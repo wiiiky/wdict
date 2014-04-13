@@ -257,6 +257,7 @@ static inline void showDictWindow(WlDictWindow * window)
 	gtk_widget_grab_focus(window->textEntry);
 	gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(window->checkItem),
 								   TRUE);
+	wl_wait_text_startWaiting(window->waiting);
 }
 
 static inline void hideDictWindow(WlDictWindow * window)
@@ -264,6 +265,7 @@ static inline void hideDictWindow(WlDictWindow * window)
 	gtk_widget_hide(GTK_WIDGET(window));
 	gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(window->checkItem),
 								   FALSE);
+	wl_wait_text_stopWaiting(window->waiting);
 }
 
 static inline gboolean isQueryStringValid(const gchar * str)
@@ -293,8 +295,6 @@ WlDictWindow *wl_dict_window_new(void)
 		(WlDictWindow *) g_object_new(WL_TYPE_DICT_WINDOW, NULL);
 
 	wl_wait_text_set_callback(window->waiting, onWaitingForText, window);
-	wl_wait_text_startWaiting(window->waiting);
-
 
 	showDictWindow(window);
 	return window;
