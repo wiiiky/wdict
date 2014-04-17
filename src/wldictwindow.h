@@ -44,6 +44,7 @@ struct _WlDictWindow {
 	GtkWindow parent;
 	/*Private */
 	GtkWidget *textEntry;
+	GtkWidget *hyperItem;
 	GtkWidget *bdButton;
 	AppIndicator *ai;
 	GtkWidget *checkItem;

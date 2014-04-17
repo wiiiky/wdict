@@ -43,6 +43,7 @@ static void onSearchButtonClicked(GtkButton * button, gpointer data);
 
 static inline void showDictWindow(WlDictWindow * window);
 static inline void hideDictWindow(WlDictWindow * window);
+static inline void startDictHyperTranslate(WlDictWindow * window);
 static inline gboolean isQueryStringValid(const gchar * str);
 
 static void wl_dict_window_init(WlDictWindow * obj)
@@ -112,6 +113,7 @@ static void wl_dict_window_init(WlDictWindow * obj)
 	obj->checkItem = checkItem;
 	obj->fromTo = fromTo;
 	obj->result = result;
+	obj->hyperItem = autoItem;
 	obj->query = wl_dict_query_new(WL_DICT_AUTO, WL_DICT_AUTO);
 	obj->waiting = wl_wait_text_new();
 }
@@ -224,11 +226,7 @@ static void onHyperTranslateActivate(GtkCheckMenuItem * item,
 									 gpointer data)
 {
 	WlDictWindow *window = data;
-	if (gtk_check_menu_item_get_active(item)) {
-		wl_wait_text_startWaiting(window->waiting);
-	} else {
-		wl_wait_text_stopWaiting(window->waiting);
-	}
+	startDictHyperTranslate(window);
 }
 
 static inline GdkPixbuf *getBaiduLogo(void)
@@ -268,6 +266,15 @@ static void onAboutItemActivate(GtkMenuItem * item, gpointer data)
 	gtk_widget_hide(dialog);
 }
 
+static inline void startDictHyperTranslate(WlDictWindow * window)
+{
+	if (gtk_check_menu_item_get_active
+		(GTK_CHECK_MENU_ITEM(window->hyperItem))) {
+		wl_wait_text_startWaiting(window->waiting);
+	} else
+		wl_wait_text_stopWaiting(window->waiting);
+}
+
 static inline void showDictWindow(WlDictWindow * window)
 {
 	gtk_window_set_position(GTK_WINDOW(window), GTK_WIN_POS_MOUSE);
@@ -275,7 +282,7 @@ static inline void showDictWindow(WlDictWindow * window)
 	gtk_widget_grab_focus(window->textEntry);
 	gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(window->checkItem),
 								   TRUE);
-	//wl_wait_text_startWaiting(window->waiting);
+	startDictHyperTranslate(window);
 }
 
 static inline void hideDictWindow(WlDictWindow * window)
@@ -284,6 +291,7 @@ static inline void hideDictWindow(WlDictWindow * window)
 	gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(window->checkItem),
 								   FALSE);
 	wl_wait_text_stopWaiting(window->waiting);
+	//stopDictHyperTanslate (window);
 }
 
 static inline gboolean isQueryStringValid(const gchar * str)
