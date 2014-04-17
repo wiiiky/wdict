@@ -37,6 +37,8 @@ static void onAboutItemActivate(GtkMenuItem * item, gpointer data);
 static gboolean onWindowDelete(GtkWidget * widget, GdkEvent * event,
 							   gpointer data);
 static void onCheckItemActivate(GtkCheckMenuItem * item, gpointer data);
+static void onHyperTranslateActivate(GtkCheckMenuItem * item,
+									 gpointer data);
 static void onSearchButtonClicked(GtkButton * button, gpointer data);
 
 static inline void showDictWindow(WlDictWindow * window);
@@ -89,6 +91,11 @@ static void wl_dict_window_init(WlDictWindow * obj)
 	g_signal_connect(G_OBJECT(checkItem), "activate",
 					 G_CALLBACK(onCheckItemActivate), obj);
 	gtk_menu_shell_append(GTK_MENU_SHELL(menu), checkItem);
+	GtkWidget *autoItem = gtk_check_menu_item_new();
+	gtk_menu_item_set_label(GTK_MENU_ITEM(autoItem), "Hyper Translate");
+	g_signal_connect(G_OBJECT(autoItem), "activate",
+					 G_CALLBACK(onHyperTranslateActivate), obj);
+	gtk_menu_shell_append(GTK_MENU_SHELL(menu), autoItem);
 	GtkWidget *aboutItem = gtk_menu_item_new_with_label("About");
 	g_signal_connect(G_OBJECT(aboutItem), "activate",
 					 G_CALLBACK(onAboutItemActivate), NULL);
@@ -213,6 +220,17 @@ static void onSearchButtonClicked(GtkButton * button, gpointer data)
 	queryString(window, src);
 }
 
+static void onHyperTranslateActivate(GtkCheckMenuItem * item,
+									 gpointer data)
+{
+	WlDictWindow *window = data;
+	if (gtk_check_menu_item_get_active(item)) {
+		wl_wait_text_startWaiting(window->waiting);
+	} else {
+		wl_wait_text_stopWaiting(window->waiting);
+	}
+}
+
 static inline GdkPixbuf *getBaiduLogo(void)
 {
 	GdkPixbuf *pixbuf = gdk_pixbuf_new_from_file(BAIDU_FANYI_LOGO, NULL);
@@ -257,7 +275,7 @@ static inline void showDictWindow(WlDictWindow * window)
 	gtk_widget_grab_focus(window->textEntry);
 	gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(window->checkItem),
 								   TRUE);
-	wl_wait_text_startWaiting(window->waiting);
+	//wl_wait_text_startWaiting(window->waiting);
 }
 
 static inline void hideDictWindow(WlDictWindow * window)
