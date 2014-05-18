@@ -9,6 +9,11 @@
 #include <stdlib.h>
 #include <string.h>
 
+/*
+ * 这个类监听划词动作，可以设置回调函数
+ * 监听并不在另外一个线程中执行，而是用了周期性（默认500ms）回调
+ */
+
 G_BEGIN_DECLS
 #define WL_TYPE_WAIT_TEXT (wl_wait_text_get_type ())
 #define WL_WAIT_TEXT(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), WL_TYPE_WAIT_TEXT, WlWaitText))

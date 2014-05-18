@@ -21,6 +21,7 @@
 #include "wldictquery.h"
 #include <stdlib.h>
 
+/* 百度开发平台申请的appid */
 #define CLIENT_ID	"WOkykfPXheIbcGE2UvqRSU1f"
 
 #define TARGET_URL	"http://openapi.baidu.com/public/2.0/bmt/translate?"\
