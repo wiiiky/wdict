@@ -2,8 +2,13 @@
 Maximized=1
 Geometry=1301x744+65+24
 
+[Execution]
+Program uri=../../Debug/src/wdict
+Run in terminal=2
+Working directories=../../../wdict
+
 [File Loader]
-Files=../../src/main.c#27%%%../../src/wldictquery.c#187%%%../../src/wldictquery.h#62%%%../../src/wldictwindow.c#282%%%../../src/wldictwindow.h#47%%%../../src/wlwaittext.h#41%%%../../src/wlwaittext.c#98
+Files=../../src/main.c#27%%%../../src/wldictquery.c#187%%%../../src/wldictquery.h#62%%%../../src/wldictwindow.c#282%%%../../src/wldictwindow.h#47%%%../../src/wlwaittext.h#41%%%../../src/wlwaittext.c#69
 
 [Document Manager]
 bookmarks=<?xml version="1.0" encoding="UTF-8"?>\n<bookmarks/>\n
@@ -12,10 +17,8 @@ bookmarks=<?xml version="1.0" encoding="UTF-8"?>\n<bookmarks/>\n
 Shortcut=wdict//data
 Expand=wdict%%%wdict//data%%%wdict//data//nobase_dist_wdata%%%wdict//src%%%wdict//src//wdict%%%wdict//dist_doc%%%wdict//WDICT
 
-[Execution]
-Program uri=../../Debug/src/wdict
-Run in terminal=2
-Working directories=../../../wdict
+[Debugger]
+Stop at beginning=2
 
 [Build]
 Configuration list=1:Default:%%%1:Debug:Debug%%%1:Profiling:Profiling%%%1:Optimized:Optimized
@@ -24,6 +27,3 @@ BuildArgs/Default=--enable-maintainer-mode
 BuildArgs/Debug=--enable-maintainer-mode 'CFLAGS=-g -O0' 'CXXFLAGS=-g -O0' 'JFLAGS=-g -O0' 'FFLAGS=-g -O0'
 BuildArgs/Profiling=--enable-maintainer-mode 'CFLAGS=-g -pg' 'CXXFLAGS=-g -pg' 'JFLAGS=-g -pg' 'FFLAGS=-g -pg'
 BuildArgs/Optimized=--enable-maintainer-mode 'CFLAGS=-O2' 'CXXFLAGS=-O2' 'JFLAGS=-O2' 'FFLAGS=-O2'
-
-[Debugger]
-Stop at beginning=2

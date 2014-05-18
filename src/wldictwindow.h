@@ -65,6 +65,15 @@ GType wl_dict_window_get_type(void) G_GNUC_CONST;
 /* Public */
 WlDictWindow *wl_dict_window_new(void);
 
+/* 显示界面 */
+void wl_dict_window_show(WlDictWindow * window);
+
+/* 设置划词翻译为开启状态 */
+void wl_dict_window_start_hyper_translate(WlDictWindow * window);
+
+/* 设置划词翻译为关闭状态 */
+void wl_dict_window_stop_hyper_translate(WlDictWindow * window);
+
 
 G_END_DECLS
 #endif

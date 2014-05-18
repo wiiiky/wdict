@@ -26,6 +26,11 @@ int main(int argc, char *argv[])
 
 	WlDictWindow *window = wl_dict_window_new();
 
+	/* 自动开启划词翻译 */
+	wl_dict_window_start_hyper_translate(window);
+
+	wl_dict_window_show(window);
+
 	gtk_main();
 
 	return 0;

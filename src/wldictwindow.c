@@ -44,7 +44,10 @@ static void onSearchButtonClicked(GtkButton * button, gpointer data);
 static inline void showDictWindow(WlDictWindow * window);
 static inline void hideDictWindow(WlDictWindow * window);
 static inline void startDictHyperTranslate(WlDictWindow * window);
+static inline void stopDictHyperTranslate(WlDictWindow * window);
 static inline gboolean isQueryStringValid(const gchar * str);
+
+static void onWaitingForText(const gchar * text, gpointer data);
 
 static void wl_dict_window_init(WlDictWindow * obj)
 {
@@ -116,6 +119,8 @@ static void wl_dict_window_init(WlDictWindow * obj)
 	obj->hyperItem = autoItem;
 	obj->query = wl_dict_query_new(WL_DICT_AUTO, WL_DICT_AUTO);
 	obj->waiting = wl_wait_text_new();
+
+	wl_wait_text_set_callback(obj->waiting, onWaitingForText, obj);
 }
 
 static void wl_dict_window_finalize(GObject * obj)
@@ -175,10 +180,9 @@ static gboolean onWindowDelete(GtkWidget * widget, GdkEvent * event,
 static void onCheckItemActivate(GtkCheckMenuItem * item, gpointer data)
 {
 	if (gtk_check_menu_item_get_active(item)) {
-		gtk_window_set_position(GTK_WINDOW(data), GTK_WIN_POS_MOUSE);
-		gtk_widget_show_all(GTK_WIDGET(data));
+		showDictWindow(WL_DICT_WINDOW(data));
 	} else {
-		gtk_widget_hide(GTK_WIDGET(data));
+		hideDictWindow(WL_DICT_WINDOW(data));
 	}
 }
 
@@ -266,13 +270,25 @@ static void onAboutItemActivate(GtkMenuItem * item, gpointer data)
 	gtk_widget_hide(dialog);
 }
 
+/*
+ * 不一定一定启动划词翻译，看相应的菜单项是否选中
+ */
 static inline void startDictHyperTranslate(WlDictWindow * window)
 {
 	if (gtk_check_menu_item_get_active
 		(GTK_CHECK_MENU_ITEM(window->hyperItem))) {
 		wl_wait_text_startWaiting(window->waiting);
-	} else
-		wl_wait_text_stopWaiting(window->waiting);
+	} else {
+		stopDictHyperTranslate(window);
+	}
+}
+
+/*
+ * 一定关闭划词翻译
+ */
+static inline void stopDictHyperTranslate(WlDictWindow * window)
+{
+	wl_wait_text_stopWaiting(window->waiting);
 }
 
 static inline void showDictWindow(WlDictWindow * window)
@@ -290,8 +306,7 @@ static inline void hideDictWindow(WlDictWindow * window)
 	gtk_widget_hide(GTK_WIDGET(window));
 	gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(window->checkItem),
 								   FALSE);
-	wl_wait_text_stopWaiting(window->waiting);
-	//stopDictHyperTanslate (window);
+	stopDictHyperTranslate(window);
 }
 
 static inline gboolean isQueryStringValid(const gchar * str)
@@ -322,6 +337,28 @@ WlDictWindow *wl_dict_window_new(void)
 
 	wl_wait_text_set_callback(window->waiting, onWaitingForText, window);
 
-	showDictWindow(window);
 	return window;
+}
+
+void wl_dict_window_show(WlDictWindow * window)
+{
+	g_return_if_fail(WL_IS_DICT_WINDOW(window));
+
+	showDictWindow(window);
+}
+
+/* 设置划词翻译为开启状态 */
+void wl_dict_window_start_hyper_translate(WlDictWindow * window)
+{
+	g_return_if_fail(WL_IS_DICT_WINDOW(window));
+	gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(window->hyperItem),
+								   TRUE);
+}
+
+/* 设置划词翻译为关闭状态 */
+void wl_dict_window_stop_hyper_translate(WlDictWindow * window)
+{
+	g_return_if_fail(WL_IS_DICT_WINDOW(window));
+	gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(window->hyperItem),
+								   FALSE);
 }
