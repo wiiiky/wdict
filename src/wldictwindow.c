@@ -209,8 +209,10 @@ static void onQueryCallback(WlDictLang from, WlDictLang to,
 
 static inline void queryString(WlDictWindow * window, const gchar * text)
 {
-    if (!isQueryStringValid(text))
+    if (!isQueryStringValid(text)) {
+        gtk_label_set_text(GTK_LABEL(window->result), "");
         return;
+    }
     gtk_entry_set_text(GTK_ENTRY(window->textEntry), text);
     wl_dict_query_query(window->query, text, onQueryCallback, window);
 }
