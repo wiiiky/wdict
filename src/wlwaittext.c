@@ -9,10 +9,10 @@
 
 
 struct _WlWaitTextPrivate {
-	guint id;
-	guint timeout;
-	WlWaitTextWaitTextCallback callback;
-	gpointer userData;
+    guint id;
+    guint timeout;
+    WlWaitTextWaitTextCallback callback;
+    gpointer userData;
 };
 
 
@@ -20,37 +20,37 @@ static gpointer wl_wait_text_parent_class = NULL;
 
 #define WL_WAIT_TEXT_GET_PRIVATE(o) (G_TYPE_INSTANCE_GET_PRIVATE ((o), WL_TYPE_WAIT_TEXT, WlWaitTextPrivate))
 enum {
-	WL_WAIT_TEXT_DUMMY_PROPERTY
+    WL_WAIT_TEXT_DUMMY_PROPERTY
 };
 static void wl_wait_text_finalize(GObject * obj);
 
 
 WlWaitText *wl_wait_text_construct(GType object_type)
 {
-	WlWaitText *self = NULL;
-	self = (WlWaitText *) g_object_new(object_type, NULL);
-	self->priv->id = (guint) 0;
-	self->priv->timeout = (guint) 500;
-	self->priv->callback = NULL;
-	self->priv->userData = NULL;
-	return self;
+    WlWaitText *self = NULL;
+    self = (WlWaitText *) g_object_new(object_type, NULL);
+    self->priv->id = (guint) 0;
+    self->priv->timeout = (guint) 500;
+    self->priv->callback = NULL;
+    self->priv->userData = NULL;
+    return self;
 }
 
 
 WlWaitText *wl_wait_text_new(void)
 {
-	return wl_wait_text_construct(WL_TYPE_WAIT_TEXT);
+    return wl_wait_text_construct(WL_TYPE_WAIT_TEXT);
 }
 
 
 void wl_wait_text_set_callback(WlWaitText * self,
-							   WlWaitTextWaitTextCallback callback,
-							   gpointer userData)
+                               WlWaitTextWaitTextCallback callback,
+                               gpointer userData)
 {
-	g_return_if_fail(self != NULL);
-	WlWaitTextPrivate *priv = self->priv;
-	priv->callback = callback;
-	priv->userData = userData;
+    g_return_if_fail(self != NULL);
+    WlWaitTextPrivate *priv = self->priv;
+    priv->callback = callback;
+    priv->userData = userData;
 }
 
 /*
@@ -58,113 +58,113 @@ void wl_wait_text_set_callback(WlWaitText * self,
  */
 gboolean isTextValid(gchar * text)
 {
-	if (text == NULL)
-		return FALSE;
-	while (*text) {
-		if (*text == '\n')
-			return FALSE;
-		text++;
-	}
-	return TRUE;
+    if (text == NULL)
+        return FALSE;
+    while (*text) {
+        if (*text == '\n')
+            return FALSE;
+        text++;
+    }
+    return TRUE;
 }
 
 gboolean onWaitingForText(gpointer data)
 {
-	WlWaitTextPrivate *priv = data;
-	static GtkClipboard *clipboard = NULL;
-	static gchar *lastText = NULL;
-	if (clipboard == NULL)
-		clipboard = gtk_clipboard_get(GDK_SELECTION_PRIMARY);
+    WlWaitTextPrivate *priv = data;
+    static GtkClipboard *clipboard = NULL;
+    static gchar *lastText = NULL;
+    if (clipboard == NULL)
+        clipboard = gtk_clipboard_get(GDK_SELECTION_PRIMARY);
 
-	gchar *text = gtk_clipboard_wait_for_text(clipboard);
-	if (g_strcmp0(lastText, text) == 0) {
-		/* 两次相同则丢弃 */
-		g_free(text);
-		return TRUE;
-	}
-	if (isTextValid(text)) {
-		g_free(lastText);
-		lastText = text;
-		if (priv->callback)
-			priv->callback(lastText, priv->userData);
-	} else
-		g_free(text);
+    gchar *text = gtk_clipboard_wait_for_text(clipboard);
+    if (g_strcmp0(lastText, text) == 0) {
+        /* 两次相同则丢弃 */
+        g_free(text);
+        return TRUE;
+    }
+    if (isTextValid(text)) {
+        g_free(lastText);
+        lastText = text;
+        if (priv->callback)
+            priv->callback(lastText, priv->userData);
+    } else
+        g_free(text);
 
-	return TRUE;
+    return TRUE;
 }
 
 void wl_wait_text_set_timeout(WlWaitText * self, guint timeout)
 {
-	g_return_if_fail(WL_IS_WAIT_TEXT(self));
-	WlWaitTextPrivate *priv = self->priv;
-	priv->timeout = timeout;
+    g_return_if_fail(WL_IS_WAIT_TEXT(self));
+    WlWaitTextPrivate *priv = self->priv;
+    priv->timeout = timeout;
 }
 
 void wl_wait_text_startWaiting(WlWaitText * self)
 {
-	g_return_if_fail(self != NULL);
-	WlWaitTextPrivate *priv = self->priv;
-	wl_wait_text_stopWaiting(self);
+    g_return_if_fail(self != NULL);
+    WlWaitTextPrivate *priv = self->priv;
+    wl_wait_text_stopWaiting(self);
 
-	if (priv->timeout)
-		priv->id = g_timeout_add(priv->timeout, onWaitingForText, priv);
-	else
-		priv->id = g_idle_add(onWaitingForText, priv);
+    if (priv->timeout)
+        priv->id = g_timeout_add(priv->timeout, onWaitingForText, priv);
+    else
+        priv->id = g_idle_add(onWaitingForText, priv);
 }
 
 
 void wl_wait_text_stopWaiting(WlWaitText * self)
 {
-	g_return_if_fail(self != NULL);
-	WlWaitTextPrivate *priv = self->priv;
-	if (priv->id == 0)
-		return;
-	g_source_remove(priv->id);
-	priv->id = 0;
+    g_return_if_fail(self != NULL);
+    WlWaitTextPrivate *priv = self->priv;
+    if (priv->id == 0)
+        return;
+    g_source_remove(priv->id);
+    priv->id = 0;
 }
 
 
 static void wl_wait_text_class_init(WlWaitTextClass * klass)
 {
-	wl_wait_text_parent_class = g_type_class_peek_parent(klass);
-	g_type_class_add_private(klass, sizeof(WlWaitTextPrivate));
-	G_OBJECT_CLASS(klass)->finalize = wl_wait_text_finalize;
+    wl_wait_text_parent_class = g_type_class_peek_parent(klass);
+    g_type_class_add_private(klass, sizeof(WlWaitTextPrivate));
+    G_OBJECT_CLASS(klass)->finalize = wl_wait_text_finalize;
 }
 
 
 static void wl_wait_text_instance_init(WlWaitText * self)
 {
-	self->priv = WL_WAIT_TEXT_GET_PRIVATE(self);
+    self->priv = WL_WAIT_TEXT_GET_PRIVATE(self);
 }
 
 
 static void wl_wait_text_finalize(GObject * obj)
 {
-	WlWaitText *self;
-	self = G_TYPE_CHECK_INSTANCE_CAST(obj, WL_TYPE_WAIT_TEXT, WlWaitText);
-	self->priv->callback = NULL;
-	G_OBJECT_CLASS(wl_wait_text_parent_class)->finalize(obj);
+    WlWaitText *self;
+    self = G_TYPE_CHECK_INSTANCE_CAST(obj, WL_TYPE_WAIT_TEXT, WlWaitText);
+    self->priv->callback = NULL;
+    G_OBJECT_CLASS(wl_wait_text_parent_class)->finalize(obj);
 }
 
 
 GType wl_wait_text_get_type(void)
 {
-	static volatile gsize wl_wait_text_type_id__volatile = 0;
-	if (g_once_init_enter(&wl_wait_text_type_id__volatile)) {
-		static const GTypeInfo g_define_type_info =
-			{ sizeof(WlWaitTextClass), (GBaseInitFunc) NULL,
-			(GBaseFinalizeFunc) NULL,
-			(GClassInitFunc) wl_wait_text_class_init,
-			(GClassFinalizeFunc) NULL,
-			NULL, sizeof(WlWaitText), 0,
-			(GInstanceInitFunc) wl_wait_text_instance_init, NULL
-		};
-		GType wl_wait_text_type_id;
-		wl_wait_text_type_id =
-			g_type_register_static(G_TYPE_OBJECT, "WlWaitText",
-								   &g_define_type_info, 0);
-		g_once_init_leave(&wl_wait_text_type_id__volatile,
-						  wl_wait_text_type_id);
-	}
-	return wl_wait_text_type_id__volatile;
+    static volatile gsize wl_wait_text_type_id__volatile = 0;
+    if (g_once_init_enter(&wl_wait_text_type_id__volatile)) {
+        static const GTypeInfo g_define_type_info =
+            { sizeof(WlWaitTextClass), (GBaseInitFunc) NULL,
+            (GBaseFinalizeFunc) NULL,
+            (GClassInitFunc) wl_wait_text_class_init,
+            (GClassFinalizeFunc) NULL,
+            NULL, sizeof(WlWaitText), 0,
+            (GInstanceInitFunc) wl_wait_text_instance_init, NULL
+        };
+        GType wl_wait_text_type_id;
+        wl_wait_text_type_id =
+            g_type_register_static(G_TYPE_OBJECT, "WlWaitText",
+                                   &g_define_type_info, 0);
+        g_once_init_leave(&wl_wait_text_type_id__volatile,
+                          wl_wait_text_type_id);
+    }
+    return wl_wait_text_type_id__volatile;
 }

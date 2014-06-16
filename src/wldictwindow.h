@@ -41,23 +41,23 @@ typedef struct _WlDictWindowClass WlDictWindowClass;
 
 
 struct _WlDictWindow {
-	GtkWindow parent;
-	/*Private */
-	GtkWidget *textEntry;
-	GtkWidget *hyperItem;
-	GtkWidget *bdButton;
-	AppIndicator *ai;
-	GtkWidget *checkItem;
-	GtkWidget *fromTo;
-	GtkWidget *result;
+    GtkWindow parent;
+    /*Private */
+    GtkWidget *textEntry;
+    GtkWidget *hyperItem;
+    GtkWidget *bdButton;
+    AppIndicator *ai;
+    GtkWidget *checkItem;
+    GtkWidget *fromTo;
+    GtkWidget *result;
 
-	WlDictQuery *query;
-	WlWaitText *waiting;
+    WlDictQuery *query;
+    WlWaitText *waiting;
 };
 
 struct _WlDictWindowClass {
-	GtkWindowClass parentKlass;
-	/*Private */
+    GtkWindowClass parentKlass;
+    /*Private */
 };
 
 GType wl_dict_window_get_type(void) G_GNUC_CONST;

@@ -14,7 +14,7 @@
 
 
 
-VPATH = /home/wiky/Documents/CODE/Bazaar/wdict/data
+
 am__is_gnu_make = test -n '$(MAKEFILE_LIST)' && test -n '$(MAKELEVEL)'
 am__make_running_with_option = \
   case $${target_option-} in \
@@ -139,20 +139,20 @@ am__installdirs = "$(DESTDIR)$(wdatadir)"
 DATA = $(nobase_dist_wdata_DATA)
 am__tagged_files = $(HEADERS) $(SOURCES) $(TAGS_FILES) $(LISP)
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
-ACLOCAL = ${SHELL} /home/wiky/Documents/CODE/Bazaar/wdict/missing aclocal-1.13
+ACLOCAL = aclocal-1.13
 ALL_LINGUAS = 
 AMTAR = $${TAR-tar}
 AM_DEFAULT_VERBOSITY = 0
 AR = ar
-AUTOCONF = ${SHELL} /home/wiky/Documents/CODE/Bazaar/wdict/missing autoconf
-AUTOHEADER = ${SHELL} /home/wiky/Documents/CODE/Bazaar/wdict/missing autoheader
-AUTOMAKE = ${SHELL} /home/wiky/Documents/CODE/Bazaar/wdict/missing automake-1.13
+AUTOCONF = autoconf
+AUTOHEADER = autoheader
+AUTOMAKE = automake-1.13
 AWK = gawk
 CATALOGS = 
 CATOBJEXT = .gmo
 CC = gcc
 CCDEPMODE = depmode=gcc3
-CFLAGS = -g -O0
+CFLAGS = -g -O2
 CPP = gcc -E
 CPPFLAGS = 
 CYGPATH_W = echo
@@ -195,10 +195,10 @@ LIBTOOL = $(SHELL) $(top_builddir)/libtool
 LIPO = 
 LN_S = ln -s
 LTLIBOBJS = 
-MAKEINFO = ${SHELL} /home/wiky/Documents/CODE/Bazaar/wdict/missing makeinfo
+MAKEINFO = makeinfo
 MANIFEST_TOOL = :
 MKDIR_P = /bin/mkdir -p
-MKINSTALLDIRS = /home/wiky/Documents/CODE/Bazaar/wdict/mkinstalldirs
+MKINSTALLDIRS = ./mkinstalldirs
 MSGFMT = /usr/bin/msgfmt
 MSGFMT_OPTS = -c
 MSGMERGE = /usr/bin/msgmerge
@@ -233,9 +233,9 @@ VERSION = 0.1
 WDICT_CFLAGS = -pthread -I/usr/include/libappindicator3-0.1 -I/usr/include/libdbusmenu-glib-0.4 -I/usr/include/gtk-3.0 -I/usr/include/atk-1.0 -I/usr/include/at-spi2-atk/2.0 -I/usr/include/pango-1.0 -I/usr/include/gio-unix-2.0/ -I/usr/include/cairo -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -I/usr/include/harfbuzz -I/usr/include/freetype2 -I/usr/include/pixman-1 -I/usr/include/libpng12 -I/usr/include/libsoup-2.4 -I/usr/include/libxml2 -I/usr/include/json-glib-1.0  
 WDICT_LIBS = -lappindicator3 -ldbusmenu-glib -lsoup-2.4 -ljson-glib-1.0 -lgtk-3 -lgdk-3 -latk-1.0 -lgio-2.0 -lpangocairo-1.0 -lgdk_pixbuf-2.0 -lcairo-gobject -lpango-1.0 -lcairo -lgobject-2.0 -lglib-2.0  
 XGETTEXT = /usr/bin/xgettext
-abs_builddir = /home/wiky/Documents/CODE/Bazaar/wdict/Debug/data
+abs_builddir = /home/wiky/Documents/CODE/Bazaar/wdict/data
 abs_srcdir = /home/wiky/Documents/CODE/Bazaar/wdict/data
-abs_top_builddir = /home/wiky/Documents/CODE/Bazaar/wdict/Debug
+abs_top_builddir = /home/wiky/Documents/CODE/Bazaar/wdict
 abs_top_srcdir = /home/wiky/Documents/CODE/Bazaar/wdict
 ac_ct_AR = ar
 ac_ct_CC = gcc
@@ -281,12 +281,12 @@ program_transform_name = s,x,x,
 psdir = ${docdir}
 sbindir = ${exec_prefix}/sbin
 sharedstatedir = ${prefix}/com
-srcdir = /home/wiky/Documents/CODE/Bazaar/wdict/data
+srcdir = .
 sysconfdir = ${prefix}/etc
 target_alias = 
 top_build_prefix = ../
 top_builddir = ..
-top_srcdir = /home/wiky/Documents/CODE/Bazaar/wdict
+top_srcdir = ..
 nobase_dist_wdata_DATA = baidu-fanyi.png
 wdatadir = $(pkgdatadir)
 all: all-am

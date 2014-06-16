@@ -26,23 +26,23 @@ typedef struct _WlWaitTextClass WlWaitTextClass;
 typedef struct _WlWaitTextPrivate WlWaitTextPrivate;
 
 struct _WlWaitText {
-	GObject parent_instance;
-	WlWaitTextPrivate *priv;
+    GObject parent_instance;
+    WlWaitTextPrivate *priv;
 };
 
 struct _WlWaitTextClass {
-	GObjectClass parent_class;
+    GObjectClass parent_class;
 };
 
 typedef void (*WlWaitTextWaitTextCallback) (const gchar * text,
-											gpointer userData);
+                                            gpointer userData);
 
 GType wl_wait_text_get_type(void) G_GNUC_CONST;
 WlWaitText *wl_wait_text_new(void);
 WlWaitText *wl_wait_text_construct(GType object_type);
 void wl_wait_text_set_callback(WlWaitText * self,
-							   WlWaitTextWaitTextCallback callback,
-							   gpointer userData);
+                               WlWaitTextWaitTextCallback callback,
+                               gpointer userData);
 void wl_wait_text_set_timeout(WlWaitText * self, guint timeout);
 void wl_wait_text_startWaiting(WlWaitText * self);
 void wl_wait_text_stopWaiting(WlWaitText * self);

@@ -1,6 +1,6 @@
-wldictwindow.o: /home/wiky/Documents/CODE/Bazaar/wdict/src/wldictwindow.c \
- /usr/include/stdc-predef.h /usr/include/x86_64-linux-gnu/bits/predefs.h \
- /home/wiky/Documents/CODE/Bazaar/wdict/src/wldictwindow.h \
+wldictwindow.o: /home/wiky/Documents/CODE/Git/wdict/src/wldictwindow.c \
+ /usr/include/stdc-predef.h \
+ /home/wiky/Documents/CODE/Git/wdict/src/wldictwindow.h \
  /usr/include/gtk-3.0/gtk/gtk.h /usr/include/gtk-3.0/gdk/gdk.h \
  /usr/include/gtk-3.0/gdk/gdkconfig.h /usr/include/glib-2.0/glib.h \
  /usr/include/glib-2.0/glib/galloca.h /usr/include/glib-2.0/glib/gtypes.h \
@@ -92,11 +92,15 @@ wldictwindow.o: /home/wiky/Documents/CODE/Bazaar/wdict/src/wldictwindow.c \
  /usr/include/glib-2.0/glib/deprecated/gcompletion.h \
  /usr/include/glib-2.0/glib/deprecated/gmain.h \
  /usr/include/glib-2.0/glib/deprecated/grel.h \
- /usr/include/glib-2.0/glib/deprecated/gthread.h /usr/include/pthread.h \
- /usr/include/endian.h /usr/include/x86_64-linux-gnu/bits/endian.h \
+ /usr/include/glib-2.0/glib/deprecated/gthread.h \
+ /usr/include/x86_64-linux-gnu/sys/types.h /usr/include/endian.h \
+ /usr/include/x86_64-linux-gnu/bits/endian.h \
  /usr/include/x86_64-linux-gnu/bits/byteswap.h \
- /usr/include/x86_64-linux-gnu/bits/byteswap-16.h /usr/include/sched.h \
- /usr/include/x86_64-linux-gnu/bits/sched.h \
+ /usr/include/x86_64-linux-gnu/bits/byteswap-16.h \
+ /usr/include/x86_64-linux-gnu/sys/select.h \
+ /usr/include/x86_64-linux-gnu/bits/select.h \
+ /usr/include/x86_64-linux-gnu/sys/sysmacros.h /usr/include/pthread.h \
+ /usr/include/sched.h /usr/include/x86_64-linux-gnu/bits/sched.h \
  /usr/include/x86_64-linux-gnu/bits/setjmp.h \
  /usr/include/gtk-3.0/gdk/gdkversionmacros.h \
  /usr/include/gtk-3.0/gdk/gdkapplaunchcontext.h \
@@ -146,10 +150,6 @@ wldictwindow.o: /home/wiky/Documents/CODE/Bazaar/wdict/src/wldictwindow.c \
  /usr/include/x86_64-linux-gnu/bits/posix_opt.h \
  /usr/include/x86_64-linux-gnu/bits/environments.h \
  /usr/include/x86_64-linux-gnu/bits/confname.h /usr/include/getopt.h \
- /usr/include/x86_64-linux-gnu/sys/types.h \
- /usr/include/x86_64-linux-gnu/sys/select.h \
- /usr/include/x86_64-linux-gnu/bits/select.h \
- /usr/include/x86_64-linux-gnu/sys/sysmacros.h \
  /usr/include/glib-2.0/gio/gdatainputstream.h \
  /usr/include/glib-2.0/gio/gdataoutputstream.h \
  /usr/include/glib-2.0/gio/gdbusaddress.h \
@@ -226,6 +226,8 @@ wldictwindow.o: /home/wiky/Documents/CODE/Bazaar/wdict/src/wldictwindow.c \
  /usr/include/glib-2.0/gio/gsrvtarget.h \
  /usr/include/glib-2.0/gio/gsimpleproxyresolver.h \
  /usr/include/glib-2.0/gio/gtask.h \
+ /usr/include/glib-2.0/gio/gsubprocess.h \
+ /usr/include/glib-2.0/gio/gsubprocesslauncher.h \
  /usr/include/glib-2.0/gio/gtcpconnection.h \
  /usr/include/glib-2.0/gio/gtcpwrapperconnection.h \
  /usr/include/glib-2.0/gio/gtestdbus.h \
@@ -257,6 +259,7 @@ wldictwindow.o: /home/wiky/Documents/CODE/Bazaar/wdict/src/wldictwindow.c \
  /usr/include/glib-2.0/gio/gmenumodel.h /usr/include/glib-2.0/gio/gmenu.h \
  /usr/include/glib-2.0/gio/gmenuexporter.h \
  /usr/include/glib-2.0/gio/gdbusmenumodel.h \
+ /usr/include/glib-2.0/gio/gnotification.h \
  /usr/include/gtk-3.0/gdk/gdktypes.h /usr/include/pango-1.0/pango/pango.h \
  /usr/include/pango-1.0/pango/pango-attributes.h \
  /usr/include/pango-1.0/pango/pango-font.h \
@@ -362,11 +365,7 @@ wldictwindow.o: /home/wiky/Documents/CODE/Bazaar/wdict/src/wldictwindow.c \
  /usr/include/gtk-3.0/gtk/gtkmenushell.h \
  /usr/include/gtk-3.0/gtk/gtkaccelmap.h \
  /usr/include/gtk-3.0/gtk/gtkaccessible.h \
- /usr/include/gtk-3.0/gtk/gtkaction.h \
  /usr/include/gtk-3.0/gtk/gtkactionable.h \
- /usr/include/gtk-3.0/gtk/gtkactiongroup.h \
- /usr/include/gtk-3.0/gtk/gtkstock.h \
- /usr/include/gtk-3.0/gtk/gtkactivatable.h \
  /usr/include/gtk-3.0/gtk/gtkadjustment.h \
  /usr/include/gtk-3.0/gtk/gtkalignment.h \
  /usr/include/gtk-3.0/gtk/gtkappchooser.h \
@@ -446,14 +445,14 @@ wldictwindow.o: /home/wiky/Documents/CODE/Bazaar/wdict/src/wldictwindow.c \
  /usr/include/gtk-3.0/gtk/gtkfontchooserdialog.h \
  /usr/include/gtk-3.0/gtk/gtkfontchooserwidget.h \
  /usr/include/gtk-3.0/gtk/gtkgrid.h \
- /usr/include/gtk-3.0/gtk/gtkiconfactory.h \
+ /usr/include/gtk-3.0/gtk/gtkheaderbar.h \
  /usr/include/gtk-3.0/gtk/gtkicontheme.h \
  /usr/include/gtk-3.0/gtk/gtkstylecontext.h \
  /usr/include/gtk-3.0/gtk/gtkstyleprovider.h \
+ /usr/include/gtk-3.0/gtk/deprecated/gtkiconfactory.h \
  /usr/include/gtk-3.0/gtk/gtkstyleproperties.h \
  /usr/include/gtk-3.0/gtk/gtkiconview.h \
  /usr/include/gtk-3.0/gtk/gtktooltip.h \
- /usr/include/gtk-3.0/gtk/gtkimagemenuitem.h \
  /usr/include/gtk-3.0/gtk/gtkimcontextinfo.h \
  /usr/include/gtk-3.0/gtk/gtkimcontextsimple.h \
  /usr/include/gtk-3.0/gtk/gtkimmulticontext.h \
@@ -462,6 +461,7 @@ wldictwindow.o: /home/wiky/Documents/CODE/Bazaar/wdict/src/wldictwindow.c \
  /usr/include/gtk-3.0/gtk/gtklayout.h \
  /usr/include/gtk-3.0/gtk/gtklevelbar.h \
  /usr/include/gtk-3.0/gtk/gtklinkbutton.h \
+ /usr/include/gtk-3.0/gtk/gtklistbox.h \
  /usr/include/gtk-3.0/gtk/gtklockbutton.h \
  /usr/include/gtk-3.0/gtk/gtkmain.h /usr/include/gtk-3.0/gtk/gtkmenubar.h \
  /usr/include/gtk-3.0/gtk/gtkmenubutton.h \
@@ -480,30 +480,30 @@ wldictwindow.o: /home/wiky/Documents/CODE/Bazaar/wdict/src/wldictwindow.c \
  /usr/include/gtk-3.0/gtk/gtkpagesetup.h \
  /usr/include/gtk-3.0/gtk/gtkpapersize.h \
  /usr/include/gtk-3.0/gtk/gtkpaned.h \
+ /usr/include/gtk-3.0/gtk/gtkplacessidebar.h \
  /usr/include/gtk-3.0/gtk/gtkprintcontext.h \
  /usr/include/gtk-3.0/gtk/gtkprintoperation.h \
  /usr/include/gtk-3.0/gtk/gtkprintsettings.h \
  /usr/include/gtk-3.0/gtk/gtkprintoperationpreview.h \
  /usr/include/gtk-3.0/gtk/gtkprogressbar.h \
- /usr/include/gtk-3.0/gtk/gtkradioaction.h \
- /usr/include/gtk-3.0/gtk/gtktoggleaction.h \
  /usr/include/gtk-3.0/gtk/gtkradiobutton.h \
  /usr/include/gtk-3.0/gtk/gtkradiomenuitem.h \
  /usr/include/gtk-3.0/gtk/gtkradiotoolbutton.h \
  /usr/include/gtk-3.0/gtk/gtktoggletoolbutton.h \
  /usr/include/gtk-3.0/gtk/gtkrange.h \
- /usr/include/gtk-3.0/gtk/gtkrecentaction.h \
- /usr/include/gtk-3.0/gtk/gtkrecentmanager.h \
  /usr/include/gtk-3.0/gtk/gtkrecentchooser.h \
+ /usr/include/gtk-3.0/gtk/gtkrecentmanager.h \
  /usr/include/gtk-3.0/gtk/gtkrecentfilter.h \
  /usr/include/gtk-3.0/gtk/gtkrecentchooserdialog.h \
  /usr/include/gtk-3.0/gtk/gtkrecentchoosermenu.h \
  /usr/include/gtk-3.0/gtk/gtkrecentchooserwidget.h \
+ /usr/include/gtk-3.0/gtk/gtkrevealer.h \
  /usr/include/gtk-3.0/gtk/gtkscale.h \
  /usr/include/gtk-3.0/gtk/gtkscalebutton.h \
  /usr/include/gtk-3.0/gtk/gtkscrollable.h \
  /usr/include/gtk-3.0/gtk/gtkscrollbar.h \
  /usr/include/gtk-3.0/gtk/gtkscrolledwindow.h \
+ /usr/include/gtk-3.0/gtk/gtksearchbar.h \
  /usr/include/gtk-3.0/gtk/gtksearchentry.h \
  /usr/include/gtk-3.0/gtk/gtkseparator.h \
  /usr/include/gtk-3.0/gtk/gtkseparatormenuitem.h \
@@ -513,6 +513,9 @@ wldictwindow.o: /home/wiky/Documents/CODE/Bazaar/wdict/src/wldictwindow.c \
  /usr/include/gtk-3.0/gtk/gtksizerequest.h \
  /usr/include/gtk-3.0/gtk/gtkspinbutton.h \
  /usr/include/gtk-3.0/gtk/gtkspinner.h \
+ /usr/include/gtk-3.0/gtk/gtkstack.h \
+ /usr/include/gtk-3.0/gtk/gtkstackswitcher.h \
+ /usr/include/gtk-3.0/gtk/gtkstack.h \
  /usr/include/gtk-3.0/gtk/gtkstatusbar.h \
  /usr/include/gtk-3.0/gtk/gtkstatusicon.h \
  /usr/include/gtk-3.0/gtk/gtkswitch.h \
@@ -532,11 +535,14 @@ wldictwindow.o: /home/wiky/Documents/CODE/Bazaar/wdict/src/wldictwindow.c \
  /usr/include/gtk-3.0/gtk/gtktreeselection.h \
  /usr/include/gtk-3.0/gtk/gtktreestore.h \
  /usr/include/gtk-3.0/gtk/gtktypebuiltins.h \
- /usr/include/gtk-3.0/gtk/gtkuimanager.h \
  /usr/include/gtk-3.0/gtk/gtkversion.h \
  /usr/include/gtk-3.0/gtk/gtkviewport.h \
  /usr/include/gtk-3.0/gtk/gtkvolumebutton.h \
  /usr/include/gtk-3.0/gtk/gtkwidgetpath.h \
+ /usr/include/gtk-3.0/gtk/deprecated/gtkactivatable.h \
+ /usr/include/gtk-3.0/gtk/deprecated/gtkaction.h \
+ /usr/include/gtk-3.0/gtk/deprecated/gtkactiongroup.h \
+ /usr/include/gtk-3.0/gtk/deprecated/gtkstock.h \
  /usr/include/gtk-3.0/gtk/deprecated/gtkcolorsel.h \
  /usr/include/gtk-3.0/gtk/deprecated/gtkcolorseldialog.h \
  /usr/include/gtk-3.0/gtk/deprecated/gtkfontsel.h \
@@ -550,10 +556,15 @@ wldictwindow.o: /home/wiky/Documents/CODE/Bazaar/wdict/src/wldictwindow.c \
  /usr/include/gtk-3.0/gtk/deprecated/gtkhscale.h \
  /usr/include/gtk-3.0/gtk/deprecated/gtkhscrollbar.h \
  /usr/include/gtk-3.0/gtk/deprecated/gtkhseparator.h \
+ /usr/include/gtk-3.0/gtk/deprecated/gtkimagemenuitem.h \
+ /usr/include/gtk-3.0/gtk/deprecated/gtkradioaction.h \
+ /usr/include/gtk-3.0/gtk/deprecated/gtktoggleaction.h \
  /usr/include/gtk-3.0/gtk/deprecated/gtkrc.h \
+ /usr/include/gtk-3.0/gtk/deprecated/gtkrecentaction.h \
  /usr/include/gtk-3.0/gtk/deprecated/gtkstyle.h \
  /usr/include/gtk-3.0/gtk/deprecated/gtktable.h \
  /usr/include/gtk-3.0/gtk/deprecated/gtktearoffmenuitem.h \
+ /usr/include/gtk-3.0/gtk/deprecated/gtkuimanager.h \
  /usr/include/gtk-3.0/gtk/deprecated/gtkvbbox.h \
  /usr/include/gtk-3.0/gtk/deprecated/gtkvbox.h \
  /usr/include/gtk-3.0/gtk/deprecated/gtkvpaned.h \
@@ -561,28 +572,12 @@ wldictwindow.o: /home/wiky/Documents/CODE/Bazaar/wdict/src/wldictwindow.c \
  /usr/include/gtk-3.0/gtk/deprecated/gtkvscrollbar.h \
  /usr/include/gtk-3.0/gtk/deprecated/gtkvseparator.h \
  /usr/include/libappindicator3-0.1/libappindicator/app-indicator.h \
- /home/wiky/Documents/CODE/Bazaar/wdict/src/wldictquery.h \
+ /home/wiky/Documents/CODE/Git/wdict/src/wldictquery.h \
  /usr/include/libsoup-2.4/libsoup/soup.h \
  /usr/include/libsoup-2.4/libsoup/soup-address.h \
- /usr/include/libsoup-2.4/libsoup/soup-portability.h \
  /usr/include/libsoup-2.4/libsoup/soup-types.h \
  /usr/include/libsoup-2.4/libsoup/soup-version.h \
- /usr/include/libsoup-2.4/libsoup/soup-status.h /usr/include/netinet/in.h \
- /usr/lib/gcc/x86_64-linux-gnu/4.8/include/stdint.h /usr/include/stdint.h \
- /usr/include/x86_64-linux-gnu/bits/wchar.h \
- /usr/include/x86_64-linux-gnu/sys/socket.h \
- /usr/include/x86_64-linux-gnu/sys/uio.h \
- /usr/include/x86_64-linux-gnu/bits/uio.h \
- /usr/include/x86_64-linux-gnu/bits/socket.h \
- /usr/include/x86_64-linux-gnu/bits/socket_type.h \
- /usr/include/x86_64-linux-gnu/bits/sockaddr.h \
- /usr/include/x86_64-linux-gnu/asm/socket.h \
- /usr/include/asm-generic/socket.h \
- /usr/include/x86_64-linux-gnu/asm/sockios.h \
- /usr/include/asm-generic/sockios.h \
- /usr/include/x86_64-linux-gnu/bits/in.h /usr/include/netinet/tcp.h \
- /usr/include/arpa/inet.h /usr/include/netdb.h /usr/include/rpc/netdb.h \
- /usr/include/x86_64-linux-gnu/bits/netdb.h \
+ /usr/include/libsoup-2.4/libsoup/soup-status.h \
  /usr/include/libsoup-2.4/libsoup/soup-auth.h \
  /usr/include/libsoup-2.4/libsoup/soup-headers.h \
  /usr/include/libsoup-2.4/libsoup/soup-message.h \
@@ -639,16 +634,14 @@ wldictwindow.o: /home/wiky/Documents/CODE/Bazaar/wdict/src/wldictwindow.c \
  /usr/include/json-glib-1.0/json-glib/json-enum-types.h \
  /usr/include/json-glib-1.0/json-glib/json-gobject.h \
  /usr/include/json-glib-1.0/json-glib/json-gvariant.h \
- /home/wiky/Documents/CODE/Bazaar/wdict/src/wlwaittext.h \
+ /home/wiky/Documents/CODE/Git/wdict/src/wlwaittext.h \
  /usr/include/stdlib.h /usr/include/x86_64-linux-gnu/bits/waitflags.h \
  /usr/include/x86_64-linux-gnu/bits/waitstatus.h /usr/include/alloca.h \
  /usr/include/x86_64-linux-gnu/bits/stdlib-float.h /usr/include/string.h
 
 /usr/include/stdc-predef.h:
 
-/usr/include/x86_64-linux-gnu/bits/predefs.h:
-
-/home/wiky/Documents/CODE/Bazaar/wdict/src/wldictwindow.h:
+/home/wiky/Documents/CODE/Git/wdict/src/wldictwindow.h:
 
 /usr/include/gtk-3.0/gtk/gtk.h:
 
@@ -872,7 +865,7 @@ wldictwindow.o: /home/wiky/Documents/CODE/Bazaar/wdict/src/wldictwindow.c \
 
 /usr/include/glib-2.0/glib/deprecated/gthread.h:
 
-/usr/include/pthread.h:
+/usr/include/x86_64-linux-gnu/sys/types.h:
 
 /usr/include/endian.h:
 
@@ -881,6 +874,14 @@ wldictwindow.o: /home/wiky/Documents/CODE/Bazaar/wdict/src/wldictwindow.c \
 /usr/include/x86_64-linux-gnu/bits/byteswap.h:
 
 /usr/include/x86_64-linux-gnu/bits/byteswap-16.h:
+
+/usr/include/x86_64-linux-gnu/sys/select.h:
+
+/usr/include/x86_64-linux-gnu/bits/select.h:
+
+/usr/include/x86_64-linux-gnu/sys/sysmacros.h:
+
+/usr/include/pthread.h:
 
 /usr/include/sched.h:
 
@@ -991,14 +992,6 @@ wldictwindow.o: /home/wiky/Documents/CODE/Bazaar/wdict/src/wldictwindow.c \
 /usr/include/x86_64-linux-gnu/bits/confname.h:
 
 /usr/include/getopt.h:
-
-/usr/include/x86_64-linux-gnu/sys/types.h:
-
-/usr/include/x86_64-linux-gnu/sys/select.h:
-
-/usr/include/x86_64-linux-gnu/bits/select.h:
-
-/usr/include/x86_64-linux-gnu/sys/sysmacros.h:
 
 /usr/include/glib-2.0/gio/gdatainputstream.h:
 
@@ -1158,6 +1151,10 @@ wldictwindow.o: /home/wiky/Documents/CODE/Bazaar/wdict/src/wldictwindow.c \
 
 /usr/include/glib-2.0/gio/gtask.h:
 
+/usr/include/glib-2.0/gio/gsubprocess.h:
+
+/usr/include/glib-2.0/gio/gsubprocesslauncher.h:
+
 /usr/include/glib-2.0/gio/gtcpconnection.h:
 
 /usr/include/glib-2.0/gio/gtcpwrapperconnection.h:
@@ -1223,6 +1220,8 @@ wldictwindow.o: /home/wiky/Documents/CODE/Bazaar/wdict/src/wldictwindow.c \
 /usr/include/glib-2.0/gio/gmenuexporter.h:
 
 /usr/include/glib-2.0/gio/gdbusmenumodel.h:
+
+/usr/include/glib-2.0/gio/gnotification.h:
 
 /usr/include/gtk-3.0/gdk/gdktypes.h:
 
@@ -1466,15 +1465,7 @@ wldictwindow.o: /home/wiky/Documents/CODE/Bazaar/wdict/src/wldictwindow.c \
 
 /usr/include/gtk-3.0/gtk/gtkaccessible.h:
 
-/usr/include/gtk-3.0/gtk/gtkaction.h:
-
 /usr/include/gtk-3.0/gtk/gtkactionable.h:
-
-/usr/include/gtk-3.0/gtk/gtkactiongroup.h:
-
-/usr/include/gtk-3.0/gtk/gtkstock.h:
-
-/usr/include/gtk-3.0/gtk/gtkactivatable.h:
 
 /usr/include/gtk-3.0/gtk/gtkadjustment.h:
 
@@ -1636,7 +1627,7 @@ wldictwindow.o: /home/wiky/Documents/CODE/Bazaar/wdict/src/wldictwindow.c \
 
 /usr/include/gtk-3.0/gtk/gtkgrid.h:
 
-/usr/include/gtk-3.0/gtk/gtkiconfactory.h:
+/usr/include/gtk-3.0/gtk/gtkheaderbar.h:
 
 /usr/include/gtk-3.0/gtk/gtkicontheme.h:
 
@@ -1644,13 +1635,13 @@ wldictwindow.o: /home/wiky/Documents/CODE/Bazaar/wdict/src/wldictwindow.c \
 
 /usr/include/gtk-3.0/gtk/gtkstyleprovider.h:
 
+/usr/include/gtk-3.0/gtk/deprecated/gtkiconfactory.h:
+
 /usr/include/gtk-3.0/gtk/gtkstyleproperties.h:
 
 /usr/include/gtk-3.0/gtk/gtkiconview.h:
 
 /usr/include/gtk-3.0/gtk/gtktooltip.h:
-
-/usr/include/gtk-3.0/gtk/gtkimagemenuitem.h:
 
 /usr/include/gtk-3.0/gtk/gtkimcontextinfo.h:
 
@@ -1667,6 +1658,8 @@ wldictwindow.o: /home/wiky/Documents/CODE/Bazaar/wdict/src/wldictwindow.c \
 /usr/include/gtk-3.0/gtk/gtklevelbar.h:
 
 /usr/include/gtk-3.0/gtk/gtklinkbutton.h:
+
+/usr/include/gtk-3.0/gtk/gtklistbox.h:
 
 /usr/include/gtk-3.0/gtk/gtklockbutton.h:
 
@@ -1706,6 +1699,8 @@ wldictwindow.o: /home/wiky/Documents/CODE/Bazaar/wdict/src/wldictwindow.c \
 
 /usr/include/gtk-3.0/gtk/gtkpaned.h:
 
+/usr/include/gtk-3.0/gtk/gtkplacessidebar.h:
+
 /usr/include/gtk-3.0/gtk/gtkprintcontext.h:
 
 /usr/include/gtk-3.0/gtk/gtkprintoperation.h:
@@ -1715,10 +1710,6 @@ wldictwindow.o: /home/wiky/Documents/CODE/Bazaar/wdict/src/wldictwindow.c \
 /usr/include/gtk-3.0/gtk/gtkprintoperationpreview.h:
 
 /usr/include/gtk-3.0/gtk/gtkprogressbar.h:
-
-/usr/include/gtk-3.0/gtk/gtkradioaction.h:
-
-/usr/include/gtk-3.0/gtk/gtktoggleaction.h:
 
 /usr/include/gtk-3.0/gtk/gtkradiobutton.h:
 
@@ -1730,11 +1721,9 @@ wldictwindow.o: /home/wiky/Documents/CODE/Bazaar/wdict/src/wldictwindow.c \
 
 /usr/include/gtk-3.0/gtk/gtkrange.h:
 
-/usr/include/gtk-3.0/gtk/gtkrecentaction.h:
+/usr/include/gtk-3.0/gtk/gtkrecentchooser.h:
 
 /usr/include/gtk-3.0/gtk/gtkrecentmanager.h:
-
-/usr/include/gtk-3.0/gtk/gtkrecentchooser.h:
 
 /usr/include/gtk-3.0/gtk/gtkrecentfilter.h:
 
@@ -1743,6 +1732,8 @@ wldictwindow.o: /home/wiky/Documents/CODE/Bazaar/wdict/src/wldictwindow.c \
 /usr/include/gtk-3.0/gtk/gtkrecentchoosermenu.h:
 
 /usr/include/gtk-3.0/gtk/gtkrecentchooserwidget.h:
+
+/usr/include/gtk-3.0/gtk/gtkrevealer.h:
 
 /usr/include/gtk-3.0/gtk/gtkscale.h:
 
@@ -1753,6 +1744,8 @@ wldictwindow.o: /home/wiky/Documents/CODE/Bazaar/wdict/src/wldictwindow.c \
 /usr/include/gtk-3.0/gtk/gtkscrollbar.h:
 
 /usr/include/gtk-3.0/gtk/gtkscrolledwindow.h:
+
+/usr/include/gtk-3.0/gtk/gtksearchbar.h:
 
 /usr/include/gtk-3.0/gtk/gtksearchentry.h:
 
@@ -1771,6 +1764,12 @@ wldictwindow.o: /home/wiky/Documents/CODE/Bazaar/wdict/src/wldictwindow.c \
 /usr/include/gtk-3.0/gtk/gtkspinbutton.h:
 
 /usr/include/gtk-3.0/gtk/gtkspinner.h:
+
+/usr/include/gtk-3.0/gtk/gtkstack.h:
+
+/usr/include/gtk-3.0/gtk/gtkstackswitcher.h:
+
+/usr/include/gtk-3.0/gtk/gtkstack.h:
 
 /usr/include/gtk-3.0/gtk/gtkstatusbar.h:
 
@@ -1810,8 +1809,6 @@ wldictwindow.o: /home/wiky/Documents/CODE/Bazaar/wdict/src/wldictwindow.c \
 
 /usr/include/gtk-3.0/gtk/gtktypebuiltins.h:
 
-/usr/include/gtk-3.0/gtk/gtkuimanager.h:
-
 /usr/include/gtk-3.0/gtk/gtkversion.h:
 
 /usr/include/gtk-3.0/gtk/gtkviewport.h:
@@ -1819,6 +1816,14 @@ wldictwindow.o: /home/wiky/Documents/CODE/Bazaar/wdict/src/wldictwindow.c \
 /usr/include/gtk-3.0/gtk/gtkvolumebutton.h:
 
 /usr/include/gtk-3.0/gtk/gtkwidgetpath.h:
+
+/usr/include/gtk-3.0/gtk/deprecated/gtkactivatable.h:
+
+/usr/include/gtk-3.0/gtk/deprecated/gtkaction.h:
+
+/usr/include/gtk-3.0/gtk/deprecated/gtkactiongroup.h:
+
+/usr/include/gtk-3.0/gtk/deprecated/gtkstock.h:
 
 /usr/include/gtk-3.0/gtk/deprecated/gtkcolorsel.h:
 
@@ -1846,13 +1851,23 @@ wldictwindow.o: /home/wiky/Documents/CODE/Bazaar/wdict/src/wldictwindow.c \
 
 /usr/include/gtk-3.0/gtk/deprecated/gtkhseparator.h:
 
+/usr/include/gtk-3.0/gtk/deprecated/gtkimagemenuitem.h:
+
+/usr/include/gtk-3.0/gtk/deprecated/gtkradioaction.h:
+
+/usr/include/gtk-3.0/gtk/deprecated/gtktoggleaction.h:
+
 /usr/include/gtk-3.0/gtk/deprecated/gtkrc.h:
+
+/usr/include/gtk-3.0/gtk/deprecated/gtkrecentaction.h:
 
 /usr/include/gtk-3.0/gtk/deprecated/gtkstyle.h:
 
 /usr/include/gtk-3.0/gtk/deprecated/gtktable.h:
 
 /usr/include/gtk-3.0/gtk/deprecated/gtktearoffmenuitem.h:
+
+/usr/include/gtk-3.0/gtk/deprecated/gtkuimanager.h:
 
 /usr/include/gtk-3.0/gtk/deprecated/gtkvbbox.h:
 
@@ -1868,59 +1883,17 @@ wldictwindow.o: /home/wiky/Documents/CODE/Bazaar/wdict/src/wldictwindow.c \
 
 /usr/include/libappindicator3-0.1/libappindicator/app-indicator.h:
 
-/home/wiky/Documents/CODE/Bazaar/wdict/src/wldictquery.h:
+/home/wiky/Documents/CODE/Git/wdict/src/wldictquery.h:
 
 /usr/include/libsoup-2.4/libsoup/soup.h:
 
 /usr/include/libsoup-2.4/libsoup/soup-address.h:
-
-/usr/include/libsoup-2.4/libsoup/soup-portability.h:
 
 /usr/include/libsoup-2.4/libsoup/soup-types.h:
 
 /usr/include/libsoup-2.4/libsoup/soup-version.h:
 
 /usr/include/libsoup-2.4/libsoup/soup-status.h:
-
-/usr/include/netinet/in.h:
-
-/usr/lib/gcc/x86_64-linux-gnu/4.8/include/stdint.h:
-
-/usr/include/stdint.h:
-
-/usr/include/x86_64-linux-gnu/bits/wchar.h:
-
-/usr/include/x86_64-linux-gnu/sys/socket.h:
-
-/usr/include/x86_64-linux-gnu/sys/uio.h:
-
-/usr/include/x86_64-linux-gnu/bits/uio.h:
-
-/usr/include/x86_64-linux-gnu/bits/socket.h:
-
-/usr/include/x86_64-linux-gnu/bits/socket_type.h:
-
-/usr/include/x86_64-linux-gnu/bits/sockaddr.h:
-
-/usr/include/x86_64-linux-gnu/asm/socket.h:
-
-/usr/include/asm-generic/socket.h:
-
-/usr/include/x86_64-linux-gnu/asm/sockios.h:
-
-/usr/include/asm-generic/sockios.h:
-
-/usr/include/x86_64-linux-gnu/bits/in.h:
-
-/usr/include/netinet/tcp.h:
-
-/usr/include/arpa/inet.h:
-
-/usr/include/netdb.h:
-
-/usr/include/rpc/netdb.h:
-
-/usr/include/x86_64-linux-gnu/bits/netdb.h:
 
 /usr/include/libsoup-2.4/libsoup/soup-auth.h:
 
@@ -2034,7 +2007,7 @@ wldictwindow.o: /home/wiky/Documents/CODE/Bazaar/wdict/src/wldictwindow.c \
 
 /usr/include/json-glib-1.0/json-glib/json-gvariant.h:
 
-/home/wiky/Documents/CODE/Bazaar/wdict/src/wlwaittext.h:
+/home/wiky/Documents/CODE/Git/wdict/src/wlwaittext.h:
 
 /usr/include/stdlib.h:
 
