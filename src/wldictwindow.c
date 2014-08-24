@@ -51,7 +51,7 @@ static void onWaitingForText(const gchar * text, gpointer data);
 
 static void wl_dict_window_init(WlDictWindow * obj)
 {
-    gtk_window_set_resizable(GTK_WINDOW(obj), FALSE);
+    //gtk_window_set_resizable(GTK_WINDOW(obj), FALSE);
     gtk_window_set_keep_above(GTK_WINDOW(obj), TRUE);
     g_signal_connect(G_OBJECT(obj), "delete-event",
                      G_CALLBACK(onWindowDelete), obj);
@@ -79,6 +79,7 @@ static void wl_dict_window_init(WlDictWindow * obj)
     gtk_widget_set_halign(fromTo, GTK_ALIGN_START);
     gtk_box_pack_start(GTK_BOX(vBox), fromTo, TRUE, TRUE, 0);
     GtkWidget *result = gtk_label_new("");
+    gtk_label_set_single_line_mode(GTK_LABEL(result), FALSE);
     gtk_widget_set_halign(result, GTK_ALIGN_START);
     gtk_box_pack_start(GTK_BOX(vBox), result, TRUE, TRUE, 0);
 
